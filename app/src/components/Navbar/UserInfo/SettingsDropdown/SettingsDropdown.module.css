@@ -1,0 +1,46 @@
+.DropdownActive {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    right: 13%;
+    top: 100%;
+    background-color: #f3f3f7;
+    box-shadow: 0px 0px 12px 4px rgba(243, 154, 154, 0.75);
+    z-index: 1;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+    min-width: 130px;
+    max-width: 130px;
+    max-height: 130px;
+
+    text-decoration: none;
+
+}
+
+.DropdownActive > a {
+    padding: 8px 8px;
+    text-decoration: none;
+    color: rgb(2, 2, 2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-weight: 500;
+    
+}
+
+.DropdownActive > a:hover {
+    background-color:  #f3caca;
+    cursor: pointer;
+
+}
+
+
+.title{
+    padding: 6px 10px;
+    font-size: 12px;
+    color: rgb(15, 14, 14);
+
+    border-bottom: 1.5px solid black;
+    font-weight: 500;
+}
