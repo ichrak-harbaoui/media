@@ -6,7 +6,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #d14747;
+    color: #ffffffda;
 }
 
 .button:focus {
@@ -14,5 +14,5 @@
 }
 
 .button:hover {
-    color: #d14747;
+    color: white;
 }

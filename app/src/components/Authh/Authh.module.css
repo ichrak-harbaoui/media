@@ -3,8 +3,8 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #18181B;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .centerContainer {
@@ -17,21 +17,21 @@
 .leftContainer {
   display: flex;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid white;
   width: 25vw;
   min-width: 400px;
   justify-content: center;
   align-items: center;
-  background-color: #1F1F23
+  background-color: white
 }
 
 .rightContainer {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid white;
   border-left: 0px;
   height: 100%;
   width: 45vw;
-  background-color: #18181B;
+  background-color: white;
   justify-content: center;
   align-items: center;
 }

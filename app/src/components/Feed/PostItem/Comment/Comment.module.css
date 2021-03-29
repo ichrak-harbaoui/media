@@ -9,11 +9,11 @@
 
 .commentOwnerText{
     font-weight: 500;
-    color: white;
+    color: black;
 }
 
 .commentContainer{
-    color: white;
+    color: black;
     display: flex;
     flex-direction: row;
     margin-bottom:6px;
@@ -35,7 +35,8 @@
     justify-content: space-evenly;
     font-size: 14px;
     font-weight: 400;
-    
+    color: black;
+
     word-wrap:break-word;
 }
 
@@ -53,7 +54,7 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 3px;
-    color: white;
+    color: black;
     font-size: 14px;
 }
 

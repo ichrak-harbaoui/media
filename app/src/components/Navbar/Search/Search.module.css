@@ -17,8 +17,8 @@
     border-radius: 3px;
     text-indent: 10px;
     border: none;
-    background-color: white;
-    color: white;
+    background-color: rgb(206, 202, 202);
+    color: rgb(138, 135, 135);
 }
 
 .dropdownPosition {
@@ -31,7 +31,7 @@
 
 .inputStyle:focus{
     border: 2px solid white;
-    background-color: white;
+    background-color: #f2f2f7;
 }
 
 .seeAll{

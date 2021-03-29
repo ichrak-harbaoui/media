@@ -13,7 +13,7 @@ const Chatt = props => {
             {
                 props.openChatOnMobile || width > 650 ?
                     <>
-                        <div className={classes.container}>
+                        {/* <div className={classes.container}>
                             {
                                 <div className={classes.display}>
                                     <div className={classes.text}>Contacts</div>
@@ -37,7 +37,7 @@ const Chatt = props => {
                                 </div>
                             }
 
-                        </div>
+                        </div> */}
                         <div className={classes.chatAreaContainer}>
                             <div className={classes.chatArea}>
                                 {
