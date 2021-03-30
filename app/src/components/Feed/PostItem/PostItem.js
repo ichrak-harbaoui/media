@@ -18,7 +18,7 @@ const PostItem = props => {
     let history = useHistory();
 
     const _handleClickDetails = (id) => {
-console.log(id);
+         console.log(id);
          history.push("/details");
     
     }

@@ -26,8 +26,12 @@ const Authen = props => {
                                     setFile={props.setFile}
                                     file={props.file}>
                                 </Register>
+                                
+
+                                 
                             }
                         </div>
+                      
                     </div>
                     {/* <div className={classes.rightContainer}>
                         <img className={classes.imageContainer} src={require("../../assets/img/ok.png")} alt=""></img>

@@ -2,8 +2,8 @@
     width: 240px;
     height: 320px;
     margin-left: 6px;
-    border: 1px solid rgb(16, 16, 19);
-    background-color: #1F1F23;
+    border: 1px solid rgb(3, 3, 3);
+    background-color: #fcfcfd;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -59,14 +59,14 @@
 .closeButton {
     border: none;
     background-color: transparent;
-    color: white;
+    color: rgb(2, 2, 2);
     cursor: pointer;
     outline: none;
 }
 
 .chatBody {
     height: 100%;
-    background-color: #18181B;
+    background-color: #f2f2f5;
     display: flex;
     flex-direction: column-reverse;
     overflow: scroll;
@@ -79,7 +79,7 @@
 }
 
 .leftChat {
-    color: white;
+    color: rgb(245, 85, 85);
     font-size: 14px;
     align-self: flex-start;
     border: 1px solid #3A3A3D;
@@ -94,11 +94,11 @@
 }
 
 .rightChat {
-    color: white;
+    color: rgb(22, 18, 18);
     font-size: 14px;
     align-self: flex-end;
-    border: 1px solid #262626;
-    background-color: #262626;
+    border: 1px solid #221979;
+    background-color: #290c91;
     border-radius: 15px;
     margin: 3px;
     letter-spacing: 0.7px;
@@ -110,7 +110,7 @@
 
 .inputContainer {
     height: 65px;
-    background-color: #232327;
+    background-color: #fcfcfd;
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
@@ -125,7 +125,7 @@
 }
 
 .sendButton {
-    color: white;
+    color: rgb(2, 2, 2);
     background-color: transparent;
     border: none;
     outline: none;
@@ -133,7 +133,7 @@
 }
 
 .userName {
-    color: white;
+    color: rgb(3, 3, 3);
     font-weight: 500;
 }
 
@@ -147,7 +147,7 @@
         z-index: 103; 
         margin-left: 6px;
         border: 1px solid rgb(16, 16, 19);
-        background-color: #1F1F23;
+        background-color: #f8f8fa;
         box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.15);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import classes from './SettingsDropdown.module.css'
+import ProfileInfo from '../../../Feed/ProfileInfo/ProfileInfo';
 
 const SettingsDropdown = props => {
     return (
@@ -10,7 +11,7 @@ const SettingsDropdown = props => {
             </div>
          
             <a href="/auth" onClick={props.onLogout}>Configure Profile</a>
-            <a href="/auth" onClick={props.onLogout}>Log out</a>
+
 
         </div>
     )

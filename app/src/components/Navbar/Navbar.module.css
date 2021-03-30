@@ -5,7 +5,7 @@
     justify-content: center;
     width: 100vw;
     z-index: 100;
-    background-color: rgb(235, 57, 57);
+    background-color: #B80C09;
     border-bottom: 1.5px solid rgb(235, 112, 112);
     box-shadow: 0px 0px 6px 0px rgb(223, 164, 164);
 }

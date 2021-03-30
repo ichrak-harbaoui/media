@@ -84,6 +84,18 @@ export const loginUser = (data) => {
     }
 }
 
+
+export const sendCode = (data) => {
+    const { Email } = data;
+    return dispatch => {
+        axios.post('http://localhost:5001/api/auth/sendCode', {
+            email: Email,
+        })
+            
+            .catch(error => dispatch(setError(error.response.data.error)))
+    }
+}
+
 export const setError = (error) => {
     return {
         type: SET_ERROR,

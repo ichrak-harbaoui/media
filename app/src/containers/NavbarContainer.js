@@ -58,6 +58,10 @@ const NavbarContainer = props => {
         })
         // eslint-disable-next-line 
     }, [])
+    const onProfile = () => {
+        props.getProfileUserInfo(props.id);
+    }
+
 
 
     return (
@@ -79,6 +83,8 @@ const NavbarContainer = props => {
                 onAcceptFriendRequest={props.onAcceptFriendRequest}
                 onRemoveFriendRequest={props.onRemoveFriendRequest}
                 setOpenChatOnMobile={setChatOpenOnMobile}
+                profileUser={props.user.profileUser}
+
             >
             </Navbar>
             <ChatContainer
@@ -100,7 +106,9 @@ const mapDispatchToProps = dispatch => {
         onSendFriendRequest: (userID, input) => dispatch(userActions.sendFriendRequest(userID, input)),
         onAcceptFriendRequest: userID => dispatch(userActions.acceptFriendRequest(userID)),
         onRemoveFriendRequest: userID => dispatch(userActions.removeFriendRequest(userID)),
-        onNewFriendRequest: () => dispatch(userActions.getInfo())
+        onNewFriendRequest: () => dispatch(userActions.getInfo()),
+        getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
+
     }
 };
 

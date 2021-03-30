@@ -106,6 +106,7 @@ const ProfileSection = props => {
                     props.userInfo?.data ?
                         <a href={"/" + props.userInfo?.data?.result?._id} alt="" className={classes.userName}>{props.userInfo?.data?.result?.name}</a> : null
                 }
+                
                 <div onClick={toggleSettings} className={classes.arrowIcon}>
                     <i className={["fas fa-caret-down", activeSettings].join(' ')}></i>
 

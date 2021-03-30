@@ -17,6 +17,8 @@ const AuthContainer = props => {
         switchState ?
             props.onLogin(data) :
             props.onRegister(data,file)
+           
+
     }
 
     return (
@@ -42,6 +44,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onRegister: (name, email, password,file) => dispatch(authActions.registerUser(name, email, password,file)),
         onLogin: (email, password) => dispatch(authActions.loginUser(email, password)),
+
     }
 };
 

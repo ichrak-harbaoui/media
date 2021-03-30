@@ -78,7 +78,8 @@ const mapDispatchToProps = dispatch => {
         onAddComment: (postID, content) => dispatch(postActions.addComment(postID, content)),
         onLike: (postID) => dispatch(postActions.like(postID)),
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
-        onClickFeed:(postID) => dispatch(postActions.getPostById(postID))
+        onClickFeed:(postID) => dispatch(postActions.getPostById(postID)),
+
     }
 };
 

@@ -95,6 +95,10 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+
+
+
+
 // Increment or decrement like
 router.post('/like/:postID', async (req, res) => {
     const token = req.header('Authorization');

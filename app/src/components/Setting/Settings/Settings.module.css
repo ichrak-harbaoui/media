@@ -2,13 +2,10 @@
     margin-top: 10px;
     height: 400px;
     position: relative;
-    background-color: rgb(250, 247, 247);
-
+    background-color: white;
     display: flex;
     flex-direction: column;
     z-index: 0;
-    border: 1px solid rgb(223, 211, 211);
-
     
 }
 
@@ -46,22 +43,8 @@
 
 .nameText{
     font-size: 30px;
+}
 
-}
-.edit{
-    font-size: 20px;
-    color: red;
-    
-
-}
-.submitButton {
-	border: 1px solid #B80C09;
-	background-color: #B80C09;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
 .dateText{
     margin-top: 3px;
     font-size: 14px;

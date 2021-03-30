@@ -8,6 +8,8 @@ import AuthView from './views/AuthView/AuthView'
 import HomeView from './views/HomeView/HomeView'
 import DetailPost from './components/Feed/DetailPost/DetailPost'
 import ProfileView from './views/ProfileView/ProfileView'
+import SettingsView from './views/SettingsView/SettingsView'
+
 const App = props => {
 
 
@@ -39,14 +41,20 @@ const App = props => {
               <Route exact path="/:id" component={ProfileView} />
 
           }
-             {
+          {
             props.user.loading ? null :
               <Route exact path="details/:id" component={DetailPost} />
+
+          }
+          {
+            props.user.loading ? null :
+              <Route exact path="/infoByID/:id" component={SettingsView} />
 
           }
           <Route exact path="/auth">
             <AuthView />
           </Route>
+          
         </Switch>
       }
     </>

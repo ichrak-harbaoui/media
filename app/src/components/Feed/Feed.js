@@ -10,6 +10,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 const Feed = props => {
     return (
         <div className={classes.wallContainer}>
+              
             {
                 props.id ?
                     props.profileUser.data ? <ProfileInfo profileUser={props.profileUser.data.result} />
@@ -26,7 +27,7 @@ const Feed = props => {
                     />
 
             }
-            <div>
+         <div>
             </div>
             {
                 props.posts.data ?
@@ -43,6 +44,9 @@ const Feed = props => {
                         )
                     }) : null
             }
+             
+         <div>
+            </div>
         </div>
 
     )

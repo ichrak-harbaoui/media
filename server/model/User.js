@@ -47,7 +47,11 @@ const userSchema = new mongoose.Schema({
     bgUrl: {
         type: String,
         default: "4340a1e9b961a04b66504114db99ae57.jpg"
-    }
+    }, 
+     resetPasswordToken:{
+        type: String,
+         default:"",
+        },
 });
 
 module.exports = mongoose.model('User', userSchema);
