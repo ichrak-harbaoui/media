@@ -6,15 +6,14 @@ const CreatePost = props => {
     return (
         <div className={classes.createPostContainer}>
             <div className={classes.title}>
-                Create post
-            </div>
+Any News?            </div>
             <div className={classes.text}>
                 <div>
                     <img className={classes.userPicture} alt="" src={"http://localhost:5001/image/"+props.userInfo?.data?.result?.imgUrl}></img>
                 </div>
                 <textarea
                     className={classes.textArea}
-                    placeholder="What's on your mind?"
+                    placeholder="What's happening??"
                     rows="6"
                     value={props.content}
                     onChange={(e) => props.setContent(e.target.value)}

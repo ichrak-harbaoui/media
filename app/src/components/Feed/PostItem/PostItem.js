@@ -60,7 +60,6 @@ const PostItem = props => {
                         <span>{props.post.comments.length} comments</span>
                     </div>
                     <div>
-                        <span>0 shares</span>
                     </div>
                 </div>
             </div>

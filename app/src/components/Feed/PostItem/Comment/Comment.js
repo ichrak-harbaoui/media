@@ -18,18 +18,13 @@ const Comment = props => {
                         </div>
 
                         <div className={classes.bottomSection}>
-                            <span style={{ marginRight: "4px", fontWeight: "500" }}>0 Likes </span>
                             {props.calculateTime(props.comment.date)}
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={classes.right}>
-
-                <i className="far fa-heart"></i>
-
-            </div>
+          
         </div>
     )
 }

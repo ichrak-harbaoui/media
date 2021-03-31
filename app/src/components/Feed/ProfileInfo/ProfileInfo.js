@@ -21,10 +21,10 @@ const ProfileInfo = props => {
                     </div>
 
                     <div className={classes.edit}>
-                    <a href={"/infoByID/" + props.profileUser._id}>
+                    {/* <a href={"/infoByID/" + props.profileUser._id}>
                    <button className={classes.submitButton}>
                    <p>Edit Profile</p>
-                   </button></a>
+                   </button></a> */}
 
                     </div>
 

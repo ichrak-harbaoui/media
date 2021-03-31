@@ -12,7 +12,7 @@ const Register = props => {
 
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
-            <h1 className={classes.headerText}>Join now.</h1>
+            <h1 className={classes.headerText}>Join Now</h1>
             <div className={classes.mediaIconsContainer}>
                 <div>
                     <label htmlFor="file-input">

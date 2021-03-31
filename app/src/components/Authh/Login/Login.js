@@ -11,7 +11,7 @@ const Login = props => {
 
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
-            <h1 className={classes.headerText}>Welcome, back.</h1>
+            <h2 className={classes.headerText}>Welcome to MediaSI</h2>
             <input
                 className={mailInputBorder}
                 type="text"

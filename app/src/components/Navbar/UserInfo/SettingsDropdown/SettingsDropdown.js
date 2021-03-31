@@ -10,7 +10,7 @@ const SettingsDropdown = props => {
                 
             </div>
          
-            <a href="/auth" onClick={props.onLogout}>Configure Profile</a>
+            <a href="/auth" onClick={props.onLogout}>Log out</a>
 
 
         </div>
