@@ -151,8 +151,5 @@ router.get('/post/:postID', async (req, res) => {
     }
 })
 
-
-
-
 module.exports = router;
 

@@ -18,15 +18,15 @@ const ChatContainer = props => {
 
     const [socket] = useSocket(ENDPOINT);
 
-    // useEffect(() => {
-    //     socket.connect();
+    useEffect(() => {
+        socket.connect();
 
-    //     socket.on(props.user.userInfo.data.result._id, (message) => {
-    //         props.onNewMessage(message, 1)
-    //     })
+        socket.on(props.user.userInfo.data.result._id, (message) => {
+            props.onNewMessage(message, 1)
+        })
 
-    //     // eslint-disable-next-line 
-    // }, [props.user.userInfo.data.result._id, socket]);
+        // eslint-disable-next-line 
+    }, [props.user.userInfo.data.result._id, socket]);
 
     const submitChatMessage = (id) => {
         return event => {

@@ -67,9 +67,32 @@ export const acceptFriendRequest = userID => {
 }
 
 // Declines friend request by userID
+export const deleteFriend = userID => {
+    return dispatch => {
+        axios.delete('http://localhost:5001/api/users/friend/:userID '+ userID).then(res => {
+            dispatch(getInfo());    
+        }).catch(err => console.log(err))
+    }
+}
+
 export const removeFriendRequest = userID => {
     return dispatch => {
         axios.delete('http://localhost:5001/api/users/friendrequest/' + userID).then(res => {
+            dispatch(getInfo());    
+        }).catch(err => console.log(err))
+    }
+}
+
+
+
+export const updateProfil = (data) => {
+    const { id,Name,Email } = data;
+
+    return dispatch => {
+        axios.post('http://localhost:5001/api/users/update/' + id, {
+            name: Name,
+            email: Email,
+        }).then(res => {
             dispatch(getInfo());    
         }).catch(err => console.log(err))
     }

@@ -22,6 +22,7 @@ const ChatCard = props => {
                         
                     </div>
                 </div>
+               
 
             </div>
             <div className={classes.buttonContainer}>

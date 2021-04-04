@@ -57,6 +57,9 @@ const FeedContainer = props => {
                 setFile={setFile}
                 file={file}
                 onClickFeed={props.onClickFeed}
+                isAuthenticated={props.auth.isAuthenticated}
+                onDeletePost={props.onDeletePost}
+                postId={props.post.id}
 
             />
         </>
@@ -66,7 +69,8 @@ const FeedContainer = props => {
 const mapStateToProps = state => ({
     post: state.post,
     user: state.user,
-    
+    auth: state.auth,
+
 
 })
 
@@ -78,7 +82,8 @@ const mapDispatchToProps = dispatch => {
         onAddComment: (postID, content) => dispatch(postActions.addComment(postID, content)),
         onLike: (postID) => dispatch(postActions.like(postID)),
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
-        onClickFeed:(postID) => dispatch(postActions.getPostById(postID)),
+        onClickFeed:(id) => dispatch(postActions.getPostById(id)),
+        onDeletePost:(postID) => dispatch(postActions.deletePost(postID)),
 
     }
 };

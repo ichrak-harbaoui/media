@@ -50,6 +50,8 @@ const NavbarContainer = props => {
             props.onSearch(e.target.value);
         }
     }
+
+
     const [socket] = useSocket(ENDPOINT);
 
     useEffect(() => {
@@ -84,6 +86,7 @@ const NavbarContainer = props => {
                 onRemoveFriendRequest={props.onRemoveFriendRequest}
                 setOpenChatOnMobile={setChatOpenOnMobile}
                 profileUser={props.user.profileUser}
+                getProfileUserInfo={props.getProfileUserInfo}
 
             >
             </Navbar>

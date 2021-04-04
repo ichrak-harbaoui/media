@@ -1,8 +1,8 @@
 import React from 'react'
 import NavbarContainer from '../../containers/NavbarContainer'
-import DetailPost from '../../components/Feed/DetailPost/DetailPost'
 
 import classes from './ProfileView.module.css'
+import DetailPostContainer from '../../containers/DetailPostContainer';
 
 const DetailPostView = ({ match }) => {
     return (
@@ -11,7 +11,7 @@ const DetailPostView = ({ match }) => {
                 <NavbarContainer />
                 <div className={classes.renderItems}>
                     <div className={classes.wall}>
-                        <DetailPost id={match.params.id}></DetailPost>
+                        <DetailPostContainer id={match.params.id}></DetailPostContainer>
                     </div>
                 </div>
             </div>

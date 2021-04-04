@@ -5,8 +5,9 @@ import classes from './ProfileInfo.module.css'
 import { Link } from 'react-router-dom'
 
 const ProfileInfo = props => {
-    
+
     return (
+        
         <div className={classes.cardSize}>
             <img src={"http://localhost:5001/image/"+props.profileUser.bgUrl} className={classes.bgImg} alt=""></img>
             <img src={"http://localhost:5001/image/"+props.profileUser.imgUrl} className={classes.profileImg} alt=""></img>
@@ -20,13 +21,7 @@ const ProfileInfo = props => {
                         </div>
                     </div>
 
-                    <div className={classes.edit}>
-                    {/* <a href={"/infoByID/" + props.profileUser._id}>
-                   <button className={classes.submitButton}>
-                   <p>Edit Profile</p>
-                   </button></a> */}
-
-                    </div>
+       
 
                   
 

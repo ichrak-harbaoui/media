@@ -142,6 +142,15 @@ export const updatePost = (postID) => {
         })
     }
 }
+export const deletePost = (postID) => {
+    return dispatch => {
+        axios.delete('http://localhost:5001/api/posts/post/'+postID,
+     {
+        }).then(res => {
+           // dispatch(setUpdatedPost(res))
+        })
+    }
+}
 
 export const setUpdatedPost = (data) => {
     return {
@@ -157,6 +166,7 @@ export const getPostById = (id) => {
         })
     }
 }
+
 export const setPostById = res => {
     return {
         type: SET_POST_BY_ID,

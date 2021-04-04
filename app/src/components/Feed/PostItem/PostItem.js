@@ -15,11 +15,15 @@ const PostItem = props => {
         props.onAddComment(props.post._id, document.getElementById(props.post._id).value)
         document.getElementById(props.post._id).value = ""
     }
+
+    const deletePostHandler = () => {
+        props.onDeletePost(props.post._id, document.getElementById(props.post._id).value)
+        document.getElementById(props.post._id).value = ""
+    }
     let history = useHistory();
 
     const _handleClickDetails = (id) => {
          console.log(id);
-         history.push("/details");
     
     }
 
@@ -39,11 +43,19 @@ const PostItem = props => {
                     </div>
                 </div>
             </div>
-            <div onClick={() =>  _handleClickDetails(props.post.id) } className={classes.contentContainer} >
-            <a href={"/details" + props.post.id} alt="">
-
+            <div>
+            {/* <button
+                    onClick={() => { deletePostHandler() }}
+                    className={classes.sendButton}
+                    type="submit">
+                    <i className="fas fa-share"></i>
+                </button> */}
+            </div>
+            <div  className={classes.contentContainer} >
+            <a href={"/details/" + props.post._id} alt="">
                 {props.post.content}
                 </a>
+                
             </div>
             {
                 props.post.type === 1 ?

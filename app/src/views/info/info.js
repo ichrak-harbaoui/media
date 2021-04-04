@@ -1,18 +1,18 @@
 import React from 'react'
 import NavbarContainer from '../../containers/NavbarContainer'
-import FeedContainer from '../../containers/FeedContainer'
 
-import classes from './Settings.module.css'
+import classes from './ProfileView.module.css'
+import InfoContainer from '../../containers/InfoContainer';
 
-const SettingsView = ({ match }) => {
+const InfoView= ({ match }) => {
     return (
         <>
             <div className={classes.screen}>
                 <NavbarContainer />
                 <div className={classes.renderItems}>
                     <div className={classes.wall}>
-                        <FeedContainer id={match.params.id}></FeedContainer>
-                  
+                    <InfoContainer />
+
                     </div>
                 </div>
             </div>
@@ -20,4 +20,4 @@ const SettingsView = ({ match }) => {
     )
 }
 
-export default SettingsView
+export default InfoView

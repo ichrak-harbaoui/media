@@ -1,10 +1,12 @@
 import React from 'react'
 
 import classes from './SettingsDropdown.module.css'
-import ProfileInfo from '../../../Feed/ProfileInfo/ProfileInfo';
 
 const SettingsDropdown = props => {
+    const { showSettings, toggleSettings, showFriends, toggleFriends, showNotifications, toggleNotifications } = props;
+
     return (
+
         <div className={classes.DropdownActive}>
              <div className={classes.title}>
                 

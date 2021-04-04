@@ -49,6 +49,9 @@ router.delete('/friendrequest/:userID', async (req, res) => {
     }
 });
 
+
+
+
 // Accepts friend request 
 router.post('/friend/:userID', async (req, res) => {
 
@@ -140,6 +143,13 @@ router.get('/infoByID/:id', (req, res) => {
 })
 
 
+router.post('/update/:id',function(req,res){
+    User.findOneAndUpdate({id:req.params.id},{$set:{name:req.body.name , email:req.body.email}},{new:true},function(err,result){
+         if(err) console.log(err.message) ;
+       res.send(result);
+     
+     })
+  });
 
 
 module.exports = router;

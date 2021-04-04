@@ -6,9 +6,10 @@ import { Redirect } from 'react-router'
 
 import AuthView from './views/AuthView/AuthView'
 import HomeView from './views/HomeView/HomeView'
-import DetailPost from './components/Feed/DetailPost/DetailPost'
 import ProfileView from './views/ProfileView/ProfileView'
-import SettingsView from './views/SettingsView/SettingsView'
+import info from './views/info/info'
+import InfoView from './views/info/info'
+import DetailPostView from './views/DetailPostView/DetailPostView';
 
 const App = props => {
 
@@ -43,14 +44,14 @@ const App = props => {
           }
           {
             props.user.loading ? null :
-              <Route exact path="details/:id" component={DetailPost} />
+              <Route exact path="/details/:id" component={DetailPostView} />
 
           }
           {
             props.user.loading ? null :
-              <Route exact path="/infoByID/:id" component={SettingsView} />
-
+              <Route exact path="/infoByID/:id" component={InfoView} />
           }
+          
           <Route exact path="/auth">
             <AuthView />
           </Route>

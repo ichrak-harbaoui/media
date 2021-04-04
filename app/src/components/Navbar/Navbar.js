@@ -52,7 +52,10 @@ const Navbar = props => {
                         />
                     </div>
                 </nav>
+
+                
             </div >
+
             {
                 size[0] < 650 ?
                     <div className={classes.bottomContainer} >
