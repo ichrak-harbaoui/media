@@ -16,3 +16,10 @@
 .button:hover {
     color: white;
 }
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
+  background: var(--danger-color);
+  color: #fff;
+}

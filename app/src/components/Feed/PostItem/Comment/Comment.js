@@ -3,6 +3,11 @@ import React from 'react'
 import classes from './Comment.module.css'
 //href={"/"+props.item.ownerID}
 const Comment = props => {
+
+    const deleteCommentHandler = () => {
+        props.onDeleteComment(props.comment._id)
+    }
+
     return (
         <div className={classes.commentContainer}>
             <div className={classes.imgtext}>
@@ -21,13 +26,16 @@ const Comment = props => {
                             {props.calculateTime(props.comment.date)}
 
                         </div>
-        {/* <button
-          onClick={() => deleteComment(postId, _id)}
-          type='button'
-          className='btn btn-danger'
-        >
-          <i className='fas fa-times' />
-        </button> */}
+                        <div>
+                        {props.comment.userID._id === props.userID ? (
+               <button
+               onClick={() => { deleteCommentHandler() }}
+               className={classes.sendButton}
+               type="submit">
+               <i className="fas fa-trash"></i>
+           </button> 
+            ) : null}
+            </div>
                     </div>
                 </div>
             </div>

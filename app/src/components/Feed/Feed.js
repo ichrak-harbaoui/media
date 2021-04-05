@@ -37,6 +37,8 @@ const Feed = props => {
                                 key={post._id}
                                 post={post}
                                 onAddComment={props.onAddComment}
+                                onDeletePost={props.onDeletePost}
+                                onDeleteComment={props.onDeleteComment}
                                 onLike={props.onLike}
                                 onClickFeed={props.onClickFeed}
                                 userInfo={props.userInfo}

@@ -91,6 +91,23 @@ export const setFetchMoreFeed = (data) => {
     }
 }
 
+export const deletePost = (postID) => {
+    return dispatch => {
+        axios.get('http://localhost:5001/api/posts/deletePost/' + postID).then(res => {
+            //dispatch((res))
+        }).catch(err => console.log(err))
+    }
+}
+
+export const deleteComment = (commentID) => {
+    return dispatch => {
+        axios.get('http://localhost:5001/api/comments/deleteComment/' + commentID).then(res => {
+            //dispatch((res))
+        }).catch(err => console.log(err))
+    }
+}
+
+
 // Fetches a post by post id ( Used for updates )
 export const getSinglePost = (postID) => { 
     return dispatch => {
@@ -139,15 +156,6 @@ export const updatePost = (postID) => {
         axios.get('http://localhost:5001/api/posts/post/' + postID, {
         }).then(res => {
             dispatch(setUpdatedPost(res))
-        })
-    }
-}
-export const deletePost = (postID) => {
-    return dispatch => {
-        axios.delete('http://localhost:5001/api/posts/post/'+postID,
-     {
-        }).then(res => {
-           // dispatch(setUpdatedPost(res))
         })
     }
 }

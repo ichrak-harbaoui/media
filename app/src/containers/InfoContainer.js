@@ -15,7 +15,7 @@ const InfoContainer = props => {
     
     const onSubmit = (data) => {
 
-        props.updateProfil(data) 
+        props.updateProfil(data,file) 
   
 
     }
@@ -34,6 +34,7 @@ const InfoContainer = props => {
                 file={file}
                 name={name}
                 email={email}
+                userID={props.user.userInfo.data.result._id}
 
                 >
             </Info>
@@ -50,7 +51,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
-        updateProfil: (id,name,email) => dispatch(userActions.updateProfil(id,name,email)),
+        updateProfil: (id,name,email,file) => dispatch(userActions.updateProfil(id,name,email,file)),
     }
 };
 

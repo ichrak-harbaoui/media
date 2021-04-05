@@ -9,7 +9,8 @@ const Info = props => {
     const nameInputBorder = errors.Name ? classes.errorInput : classes.input
     const mailInputBorder = errors.Email ? classes.errorInput : classes.input
     const passwordInputBorder = errors.Password ? classes.errorInput : classes.input
-   
+ 
+
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
             <h1 className={classes.headerText}>Join Now</h1>
@@ -23,24 +24,26 @@ const Info = props => {
                 {
                     props.file ?
                         <img className={classes.previewImage} src={URL.createObjectURL(props.file)} alt=""></img> :
-                        <img className={classes.previewImage} src={"http://localhost:5001/image/"+props.userInfo?.data?.result?.imgUrl} alt=""></img>
+                        <img className={classes.previewImage} src={"http://localhost:5001/image/" + props.userInfo?.data?.result?.imgUrl }alt=""></img>
                 }
             </div>
           
             <input
-                className={nameInputBorder}
-                type="text"
-                placeholder="Name"
-                name="Name"
-                // value={props.userInfo?.data?.result?.name}
-                // onChange={(e) => props.name(e.target.value)}             
+             
+             className={nameInputBorder}
+             type="text"
+             placeholder="Name"
+             name="Name"
+             value={props.userInfo?.data?.result?.name}
+
+             ref={register({ required: true, minLength: 4, maxLength: 30 })}             
                     />
             <input
                 className={mailInputBorder}
                 type="text"
                 placeholder="Email"
                 name="Email"
-                // value={props.userInfo?.data?.result?.email}
+                value={props.userInfo?.data?.result?.email}
                 // onChange={(e) => props.setEmail(e.target.value)}      
                 ref={register({ required: true, pattern: /^\S+@\S+$/i })}
             />

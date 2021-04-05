@@ -95,7 +95,31 @@ router.post('/', verify, async (req, res) => {
     }
 });
 
+router.get('/deletePost/:postID', function (req, res) {
+    Post.findOneAndDelete({ _id: req.params.postID} ).exec(function (err, result) {
+      if (err) res.send(err)
+      else res.send(result)
+    })
+    
+  });
+  
+// Removes friend request by userID
+router.delete('/post/:id', async (req, res) => {
+    const token = req.header('Authorization');
+    const user = jwt.decode(token);
 
+    try {
+        await User.findById(user._id).updateOne({ $pull: { posts: req.params.id } });
+        res.json({
+            "status": {
+                "deletedFrom": user._id,
+                "Deleted": req.params.id
+            }
+        })
+    } catch (err) {
+        res.status(400).send({ err: err })
+    }
+});
 
 
 

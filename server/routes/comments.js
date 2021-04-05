@@ -31,6 +31,13 @@ const comment = new Comment({
 })
 
 
-
+router.get('/deleteComment/:commentID', function (req, res) {
+    Comment.findOneAndDelete({ _id: req.params.commentID} ).exec(function (err, result) {
+      if (err) res.send(err)
+      else res.send(result)
+    })
+    
+  });
+  
 
 module.exports = router;

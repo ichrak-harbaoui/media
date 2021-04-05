@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const PostItem = props => {
 
-    
+    const userID = (props.userInfo?.data?.result?._id)
     const calculateTime = (date) => {
         return moment(date).fromNow();
     }
@@ -17,9 +17,10 @@ const PostItem = props => {
     }
 
     const deletePostHandler = () => {
-        props.onDeletePost(props.post._id, document.getElementById(props.post._id).value)
-        document.getElementById(props.post._id).value = ""
+        props.onDeletePost(props.post._id)
+   
     }
+
     let history = useHistory();
 
     const _handleClickDetails = (id) => {
@@ -44,12 +45,15 @@ const PostItem = props => {
                 </div>
             </div>
             <div>
-            {/* <button
+            {props.post.userID._id === props.userInfo?.data?.result?._id ? (
+
+            <button
                     onClick={() => { deletePostHandler() }}
                     className={classes.sendButton}
                     type="submit">
-                    <i className="fas fa-share"></i>
-                </button> */}
+                    <i className="fas fa-trash"></i>
+                </button>             ) : null}
+
             </div>
             <div  className={classes.contentContainer} >
             <a href={"/details/" + props.post._id} alt="">
@@ -109,7 +113,13 @@ const PostItem = props => {
                     props.post.comments ?
                         props.post.comments.map((item, index) => {
                             return (
-                                <Comment key={index} comment={item} calculateTime={calculateTime}></Comment>
+                                <Comment key={index} 
+                                comment={item} 
+                                onDeleteComment={props.onDeleteComment}
+                                calculateTime={calculateTime}
+                                userID={userID}
+                                ></Comment>
+
                             )
                         })
                         : null

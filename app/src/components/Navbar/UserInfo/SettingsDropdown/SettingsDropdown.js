@@ -11,7 +11,8 @@ const SettingsDropdown = props => {
              <div className={classes.title}>
                 
             </div>
-         
+            <a href={"/infoByID/" + props.userID} alt="" className={classes.userName}>Settings</a> 
+
             <a href="/auth" onClick={props.onLogout}>Log out</a>
 
 

@@ -20,7 +20,6 @@ const DetailPostContainer = props => {
     return (
         <>
             <DetailPost
-               
                 content={content}
                 setContent={setContent}
                 type={type}

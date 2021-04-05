@@ -13,6 +13,7 @@ const ProfileSection = props => {
     const activeFriends = showFriends ? classes.active : null;
     const activeSettings = showSettings ? classes.active : null;
     const size = useWindowSize();
+    const userID = (props.userInfo.data.result._id)
 
     return (
         <>
@@ -77,7 +78,8 @@ const ProfileSection = props => {
             {
                 showSettings ?
                     <SettingsDropdown
-                        onLogout={props.onLogout} /> :
+                        onLogout={props.onLogout} 
+                        userID={userID}/> :
                     null
             }
             <div className={classes.container}>
@@ -105,10 +107,6 @@ const ProfileSection = props => {
                 {
                     props.userInfo?.data ?
                         <a href={"/" + props.userInfo?.data?.result?._id} alt="" className={classes.userName}>{props.userInfo?.data?.result?.name}</a> : null
-                }
-                        {
-                    props.userInfo?.data ?
-                        <a href={"/infoByID/" + props.userInfo?.data?.result?._id} alt="" className={classes.userName}>:</a> : null
                 }
                 <div onClick={toggleSettings} className={classes.arrowIcon}>
                     <i className={["fas fa-caret-down", activeSettings].join(' ')}></i>

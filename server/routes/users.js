@@ -5,6 +5,7 @@ const Post = require('../model/Post');
 const Comment = require('../model/Comment');
 const User = require('../model/User');
 const socketApi = require('../socketApi');
+var mongoose = require('mongoose')
 
 // Create friend request to given id
 router.post('/friendrequest/:userID', async (req, res) => {
@@ -143,13 +144,19 @@ router.get('/infoByID/:id', (req, res) => {
 })
 
 
-router.post('/update/:id',function(req,res){
-    User.findOneAndUpdate({id:req.params.id},{$set:{name:req.body.name , email:req.body.email}},{new:true},function(err,result){
-         if(err) console.log(err.message) ;
-       res.send(result);
+// router.post('/update/:id',function(req,res){
+//     User.findOneAndUpdate({id:req.params.id},{$set:{name:req.body.name , email:req.body.email}},{new:true},function(err,result){
+//          if(err) console.log(err.message) ;
+//        res.send(result);
      
-     })
+//      })
+//   });
+router.post('/update',function(req,res){
+    User.findById(req.body.id).updateOne({$set:{name:req.body.name , email:req.body.email , imgUrl:req.body.imgUrl}}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
   });
-
+});
 
 module.exports = router;

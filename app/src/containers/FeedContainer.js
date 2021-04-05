@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import * as postActions from '../store/actions/postActions'
 import * as userActions from '../store/actions/userActions'
 import Feed from '../components/Feed/Feed'
+import useSocket from 'use-socket.io-client';
+const ENDPOINT = "http://localhost:5001";
 
 const FeedContainer = props => {
 
@@ -16,8 +18,6 @@ const FeedContainer = props => {
 
     useEffect(() => {
         props.id ? onProfile() : props.onFetchFeed(pageNumber);
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNumber]);
 
     const [content, setContent] = useState("");
@@ -31,7 +31,7 @@ const FeedContainer = props => {
         setContent("");
         setFile('');
     }
-
+  
 
     const handleOnDocumentBottom = useCallback(() => {
         setPageNumber(curr => curr + 1)
@@ -39,6 +39,7 @@ const FeedContainer = props => {
     }, [])
     useBottomScrollListener(handleOnDocumentBottom, 400)
 
+  
     return (
         <>
             <Feed
@@ -59,7 +60,8 @@ const FeedContainer = props => {
                 onClickFeed={props.onClickFeed}
                 isAuthenticated={props.auth.isAuthenticated}
                 onDeletePost={props.onDeletePost}
-                postId={props.post.id}
+                onDeleteComment={props.onDeleteComment}
+               postId={props.post.id}
 
             />
         </>
@@ -83,7 +85,8 @@ const mapDispatchToProps = dispatch => {
         onLike: (postID) => dispatch(postActions.like(postID)),
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
         onClickFeed:(id) => dispatch(postActions.getPostById(id)),
-        onDeletePost:(postID) => dispatch(postActions.deletePost(postID)),
+        onDeletePost: (postID) => dispatch(postActions.deletePost(postID)),
+        onDeleteComment: (commentID) => dispatch(postActions.deleteComment(commentID)),
 
     }
 };
