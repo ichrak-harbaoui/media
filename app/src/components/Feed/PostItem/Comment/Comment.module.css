@@ -13,14 +13,29 @@
 }
 
 .commentContainer{
-    color: black;
+    color: 1px solid black;
     display: flex;
     flex-direction: row;
     margin-bottom:6px;
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
+
 }
+
+.commentText{
+    color: rgb(85, 84, 84);
+    display: flex;
+    flex-direction: row;
+    margin-bottom:6px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+
+}
+
 
 .imgtext{
     display: flex;
@@ -56,5 +71,17 @@
     margin-right: 3px;
     color: black;
     font-size: 14px;
+}
+.bottomIconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    padding: 10px;
+    cursor: pointer;
 }
 

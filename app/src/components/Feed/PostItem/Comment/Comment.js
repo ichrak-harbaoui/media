@@ -19,7 +19,7 @@ const Comment = props => {
                             <a href={"/" + props.comment.userID._id}>
                                 <span className={classes.commentOwnerText}>{props.comment.userID.name} </span>
                             </a>
-                            {props.comment.content}
+                           <div className={classes.commentText}>{props.comment.content}</div> 
                         </div>
 
                         <div className={classes.bottomSection}>
@@ -30,7 +30,7 @@ const Comment = props => {
                         {props.comment.userID._id === props.userID ? (
                <button
                onClick={() => { deleteCommentHandler() }}
-               className={classes.sendButton}
+               className={classes.bottomIconButton}
                type="submit">
                <i className="fas fa-trash"></i>
            </button> 

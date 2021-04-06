@@ -1,8 +1,8 @@
 .cardSize {
     margin-top: 10px;
-    height: 400px;
+    height: 350px;
     position: relative;
-    background-color: rgb(250, 247, 247);
+    background-color:white;
 
     display: flex;
     flex-direction: column;
@@ -14,7 +14,6 @@
 
 .profileImg {
     position: absolute;
-    
     margin-top: -65px;
     top: 55%;
     left: 5%;
@@ -22,6 +21,7 @@
     width: 130px;
     border: 1px solid #18181B;
     border-radius: 50%;
+    
 }
 
 .bgImg {
@@ -45,7 +45,9 @@
 }
 
 .nameText{
-    font-size: 30px;
+    font-size: 20px;
+    color: #3d3c3c;
+
 
 }
 .edit{

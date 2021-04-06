@@ -50,31 +50,7 @@ const ProfileSection = props => {
                         </Dropdown>
                     </div> : null
             }
-            {
-                showNotifications ?
-
-                    <div className={classes.dropdownPosition}>
-                        <Dropdown title="Notifications">
-                            {
-                                props.userInfo.data ?
-                                    props.userInfo.data.result.notifications.length > 0 ?
-                                        props.userInfo.data.result.notifications.map(notification => {
-                                            return (
-                                                <Card
-                                                    id={notification._id}
-                                                    image={notification.releatedImg}
-                                                    text={notification.content}
-                                                    subtext="0 Days ago"
-                                                />
-                                            )
-                                        }) :
-                                        <div className={classes.text}>No new notifications</div> : null
-                            }
-                        </Dropdown>
-                    </div> :
-
-                    null
-            }
+          
             {
                 showSettings ?
                     <SettingsDropdown
@@ -85,18 +61,13 @@ const ProfileSection = props => {
             <div className={classes.container}>
             {
                 size[0] > 650 ? 
-                <><div onClick={toggleNotifications} className={classes.RequestIcon} style={{marginRight:"10px"}}>
-                    <i className={["fas fa-bell", activeNotifications].join(' ')}></i>
-                    <div className={classes.iconContainer} >
-                        <p>{props.userInfo?.data?.result?.notifications?.length}</p>
-                    </div>
-                </div>
+              
                 <div onClick={toggleFriends} className={classes.RequestIcon}>
                     <i className={["fas fa-user-friends", activeFriends].join(' ')}></i>
                     <div className={classes.iconContainer}>
                         <p>{props.userInfo?.data?.result?.friendRequests?.length}</p>
                     </div>
-                </div> </> : <div> </div>
+                </div>  : <div> </div>
             }
                 
                 {

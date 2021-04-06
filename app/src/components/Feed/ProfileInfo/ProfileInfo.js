@@ -3,10 +3,12 @@ import moment from 'moment'
 
 import classes from './ProfileInfo.module.css'
 import { Link } from 'react-router-dom'
+import CreatePost from '../CreatePost/CreatePost';
 
 const ProfileInfo = props => {
 
     return (
+        <>
         
         <div className={classes.cardSize}>
             <img src={"http://localhost:5001/image/"+props.profileUser.bgUrl} className={classes.bgImg} alt=""></img>
@@ -21,13 +23,25 @@ const ProfileInfo = props => {
                         </div>
                     </div>
 
-       
-
-                  
-
+    
                 </div>
             </div>
         </div>
+        {props.profileUser._id === props.userInfo?.data?.result?._id ? (
+
+        <CreatePost
+                        userInfo={props.userInfo}
+                        content={props.content}
+                        setContent={props.setContent}
+                        type={props.type}
+                        setType={props.setType}
+                        onCreatePost={props.onCreatePost}
+                        setFile={props.setFile}
+                        file={props.file}
+                    />
+                    ) : null}
+
+</>
     )
 }
 

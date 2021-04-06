@@ -3,7 +3,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgb(232, 232, 235);
   color: black;
 }
 
@@ -11,18 +11,18 @@
   display: flex;
   height: 80vh;
   border-radius: 2%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.438);
 }
 
 .leftContainer {
   display: flex;
   height: 100%;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.418);
   width: 25vw;
   min-width: 400px;
   justify-content: center;
   align-items: center;
-  background-color: white
+  background-color: rgba(255, 255, 255, 0.452)
 }
 
 .rightContainer {
@@ -31,7 +31,7 @@
   border-left: 0px;
   height: 100%;
   width: 45vw;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.411);
   justify-content: center;
   align-items: center;
 }

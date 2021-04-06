@@ -8,12 +8,17 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 
 const Feed = props => {
+
     return (
         <div className={classes.wallContainer}>
               
             {
                 props.id ?
-                    props.profileUser.data ? <ProfileInfo profileUser={props.profileUser.data.result} />
+                    props.profileUser.data ? <ProfileInfo profileUser={props.profileUser.data.result
+
+                    } 
+                    userInfo={props.userInfo}
+                    />
                         : null :
                     <CreatePost
                         userInfo={props.userInfo}

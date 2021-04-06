@@ -5,8 +5,7 @@ import classes from './CreatePost.module.css'
 const CreatePost = props => {
     return (
         <div className={classes.createPostContainer}>
-            <div className={classes.title}>
-Any News?            </div>
+            
             <div className={classes.text}>
                 <div>
                     <img className={classes.userPicture} alt="" src={"http://localhost:5001/image/"+props.userInfo?.data?.result?.imgUrl}></img>

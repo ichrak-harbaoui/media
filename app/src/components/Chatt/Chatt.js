@@ -16,7 +16,7 @@ const Chatt = props => {
                         { <div className={classes.container}>
                             {
                                 <div className={classes.display}>
-                                    <div className={classes.text}>Contacts</div>
+                                    <div className={classes.text}>CONTACTS</div>
                                     {
                                         props.list?.map((item, index) => {
                                             return (
@@ -29,7 +29,6 @@ const Chatt = props => {
                                                         image={item.imgUrl}
                                                         onStartNewChat={props.onStartNewChat}
                                                     ></ChatCard>
-                                                    <div style={{ borderBottom: "1px solid #29272E" }}></div>
                                                 </div>
                                             )
                                         })

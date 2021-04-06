@@ -33,10 +33,10 @@ const Authen = props => {
                         </div>
                       
                     </div>
-                    {/* <div className={classes.rightContainer}>
-                        <img className={classes.imageContainer} src={require("../../assets/img/ok.png")} alt=""></img>
+                     <div className={classes.rightContainer}>
+                        <img className={classes.imageContainer} src={require("../../assets/svg/hire.svg")} alt=""></img>
 
-                    </div> */}
+                    </div> 
                 </div>
             </div>
         </>

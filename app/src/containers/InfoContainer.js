@@ -8,15 +8,14 @@ import Info from '../components/Info/Info'
 
 const InfoContainer = props => {
 
-    const [file, setFile ] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-  
+    const [file, setFile ] = useState(props.user.userInfo.data.result.file);
+    const [name, setName] = useState(props.user.userInfo.data.result.name);
+    const [email, setEmail] = useState(props.user.userInfo.data.result.email);
+
     
     const onSubmit = (data) => {
 
         props.updateProfil(data,file) 
-  
 
     }
 

@@ -29,11 +29,12 @@ const PostItem = props => {
     }
 
     return (
+        
         <div className={classes.postContainer}>
-            <div className={classes.userInfo}>
-                <a href={"/" + props.post.userID._id} alt="">  <img className={classes.userPicture} alt="" src={"http://localhost:5001/image/" + props.post.userID.imgUrl}></img>
+            <div className={classes.userInfo} >
+                <a href={"/" + props.post.userID._id} alt="" >  <img className={classes.userPicture} alt="" src={"http://localhost:5001/image/" + props.post.userID.imgUrl }></img>
                 </a>
-                <div className={classes.userTextContainer}>
+                <div className={classes.userTextContainer} >
                     <a href={"/" + props.post.userID._id} alt="">
                         <div className={classes.userName}>
                             {props.post.userID.name}
@@ -43,18 +44,20 @@ const PostItem = props => {
                         {calculateTime(props.post.date)}
                     </div>
                 </div>
-            </div>
-            <div>
+                
             {props.post.userID._id === props.userInfo?.data?.result?._id ? (
 
             <button
                     onClick={() => { deletePostHandler() }}
-                    className={classes.sendButton}
+                    className={classes.bottomIconButton}
                     type="submit">
                     <i className="fas fa-trash"></i>
                 </button>             ) : null}
 
+            
+                
             </div>
+          
             <div  className={classes.contentContainer} >
             <a href={"/details/" + props.post._id} alt="">
                 {props.post.content}
@@ -135,7 +138,10 @@ const PostItem = props => {
                     <i className="fas fa-share"></i>
                 </button>
             </div>
+
+            
         </div>
+        
     )
 }
 

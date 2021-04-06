@@ -34,8 +34,8 @@ const Info = props => {
              type="text"
              placeholder="Name"
              name="Name"
-             value={props.userInfo?.data?.result?.name}
-
+             value={props.name}
+             onChange={(e) => props.setName(e.target.value)}
              ref={register({ required: true, minLength: 4, maxLength: 30 })}             
                     />
             <input
@@ -43,8 +43,8 @@ const Info = props => {
                 type="text"
                 placeholder="Email"
                 name="Email"
-                value={props.userInfo?.data?.result?.email}
-                // onChange={(e) => props.setEmail(e.target.value)}      
+                value={props.email}
+                onChange={(e) => props.setEmail(e.target.value)}
                 ref={register({ required: true, pattern: /^\S+@\S+$/i })}
             />
             
