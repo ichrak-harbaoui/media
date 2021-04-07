@@ -1,4 +1,4 @@
-import { FETCH_MORE_FEED, SET_SINGLE_POST, SET_UPDATED_POST ,SET_POST_BY_ID } from '../actions/actionTypes'
+import { FETCH_MORE_FEED, SET_SINGLE_POST, SET_UPDATED_POST ,SET_POST_BY_ID, DELETE_FEED_SUCCESS } from '../actions/actionTypes'
 
 const initialState = {
   feed: [],
@@ -19,6 +19,13 @@ export default function (state = initialState, action) {
 
         feed: action.payload
       };
+
+      case DELETE_FEED_SUCCESS:
+        return {
+          ...state,
+  
+          feed: action.payload
+        };
       
     case SET_SINGLE_POST:
       if (state.feed.data) {

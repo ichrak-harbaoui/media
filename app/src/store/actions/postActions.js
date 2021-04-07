@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_MORE_FEED, SET_SINGLE_POST, SET_UPDATED_POST,SET_POST_BY_ID } from './actionTypes'
+import { DELETE_FEED_SUCCESS,FETCH_MORE_FEED, SET_SINGLE_POST, SET_UPDATED_POST,SET_POST_BY_ID } from './actionTypes'
 import Compressor from 'compressorjs';
 
 // Creates new post 
@@ -94,11 +94,18 @@ export const setFetchMoreFeed = (data) => {
 export const deletePost = (postID) => {
     return dispatch => {
         axios.get('http://localhost:5001/api/posts/deletePost/' + postID).then(res => {
-            //dispatch((res))
+            dispatch(setDeleteFeed())
+            dispatch(fetchMoreFeed())
         }).catch(err => console.log(err))
     }
 }
 
+export const setDeleteFeed = () => {
+    return {
+        type: DELETE_FEED_SUCCESS,
+        payload: []
+    }
+}
 export const deleteComment = (commentID) => {
     return dispatch => {
         axios.get('http://localhost:5001/api/comments/deleteComment/' + commentID).then(res => {

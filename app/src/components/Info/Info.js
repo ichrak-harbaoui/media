@@ -54,7 +54,7 @@ const Info = props => {
                 type="submit">
                 Update
             </button>
-            <div className={classes.text} onClick={onSwitchState}>cancel</div>
+            {/* <div className={classes.text} onClick={onSwitchState}>cancel</div> */}
         </form>
     )
 }

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import classes from './PostItem.module.css'
 import Comment from './Comment/Comment'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { fetchMoreFeed } from 'store/actions/postActions'
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
+import { useForm } from 'react-hook-form'
 
 const PostItem = props => {
-
+    const { register, handleSubmit, errors } = useForm();
+    const nameInputBorder = errors.Name ? classes.errorInput : classes.input
+    const mailInputBorder = errors.Email ? classes.errorInput : classes.input
     const userID = (props.userInfo?.data?.result?._id)
     const calculateTime = (date) => {
         return moment(date).fromNow();
@@ -27,10 +33,14 @@ const PostItem = props => {
          console.log(id);
     
     }
-
+    const [isModalOpen,setIsModalOpen] = useState(false)
     return (
-        
+        <>
+   
+     
         <div className={classes.postContainer}>
+
+        
             <div className={classes.userInfo} >
                 <a href={"/" + props.post.userID._id} alt="" >  <img className={classes.userPicture} alt="" src={"http://localhost:5001/image/" + props.post.userID.imgUrl }></img>
                 </a>
@@ -45,18 +55,32 @@ const PostItem = props => {
                     </div>
                 </div>
                 
-            {props.post.userID._id === props.userInfo?.data?.result?._id ? (
-
-            <button
-                    onClick={() => { deletePostHandler() }}
+            {props.post.userID._id === props.userInfo?.data?.result?._id && (
+                <div className="col-6">
+                <button
+                    onClick={() => {setIsModalOpen(!isModalOpen)}}
                     className={classes.bottomIconButton}
+                    style={{right:'7%'}}
+
                     type="submit">
-                    <i className="fas fa-trash"></i>
-                </button>             ) : null}
+                    <i className="fas fa-cog"></i>
+                </button>
+              <button
+                onClick={() => { deletePostHandler() }}
+                className={classes.bottomIconButton}
+                type="submit">
+                <i className="fas fa-trash"></i>
+            </button> 
+          </div>
+                  
+                )}
 
             
                 
             </div>
+          
+
+
           
             <div  className={classes.contentContainer} >
             <a href={"/details/" + props.post._id} alt="">
@@ -82,6 +106,45 @@ const PostItem = props => {
                     </div>
                 </div>
             </div>
+            { isModalOpen &&
+               <div >
+               <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
+                   <div className={classes.mediaIconsContainer}>
+                       <div>
+                           <label htmlFor="file-input">
+                               <div className={classes.plusContainer}><i className={["fas fa-plus", classes.mediaIcons].join(' ')} /></div>
+                           </label>
+                           <input id="file-input" type='file' accept="image/*" onChange={(e) => props.setFile(e.target.files[0])} />
+                       </div>
+                       {
+                           props.file ?
+                               <img className={classes.previewImage} src={URL.createObjectURL(props.file)} alt=""></img> :
+                               <img className={classes.previewImage} src={"http://localhost:5001/image/" + props.userInfo?.data?.result?.imgUrl }alt=""></img>
+                       }
+                   </div>
+                 
+                   <input
+                    
+                    className={nameInputBorder}
+                    type="text"
+                    placeholder="UPDATE POST"
+                    name="Name"
+                    value={props.name}
+                    onChange={(e) => props.setName(e.target.value)}
+                    ref={register({ required: true, minLength: 4, maxLength: 30 })}             
+                           />
+                  
+                   <div className={classes.text} >{props.errorMessage}</div>
+                   <button
+                       className={classes.submitButton}
+                       type="submit">
+                       UPDATE 
+                   </button>
+                   {/* <div className={classes.text} onClick={()=>setIsModalOpen(!isModalOpen)}>cancel</div> */}
+               </form>
+           
+               </div>  
+        }
             <div className={classes.buttonsContainer}>
 
                 {
@@ -141,7 +204,7 @@ const PostItem = props => {
 
             
         </div>
-        
+        </>
     )
 }
 

@@ -1,29 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import classes from './Feed.module.css'
 import CreatePost from './CreatePost/CreatePost'
 import PostItem from './PostItem/PostItem'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { useForm } from 'react-hook-form';
 
 
 
 const Feed = props => {
+    const { register, handleSubmit, errors } = useForm();
+    const [isModalOpen,setIsModalOpen] = useState(false)
 
+    const nameInputBorder = errors.Name ? classes.errorInput : classes.input
+    const mailInputBorder = errors.Email ? classes.errorInput : classes.input
     return (
         <div className={classes.wallContainer}>
               
             {
                 props.id ?
-                    props.profileUser.data ? <ProfileInfo profileUser={props.profileUser.data.result
+                    props.profileUser.data ? <ProfileInfo profileUser={props?.profileUser?.data?.result
 
                     } 
-                    userInfo={props.userInfo}
+                    userInfo={props?.userInfo}
                     />
                         : null :
                     <CreatePost
-                        userInfo={props.userInfo}
-                        content={props.content}
-                        setContent={props.setContent}
+                        userInfo={props?.userInfo}
+                        content={props?.content}
+                        setContent={props?.setContent}
                         type={props.type}
                         setType={props.setType}
                         onCreatePost={props.onCreatePost}
