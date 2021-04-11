@@ -128,8 +128,6 @@ router.get('/info', (req, res) => {
 
 // Get user info by userID
 router.get('/infoByID/:id', (req, res) => {
-
-
     try {
         User.findById(req.params.id)
             .select(['imgUrl', 'name', '_id', 'date', 'email', 'bgUrl', 'friends'])
@@ -144,6 +142,8 @@ router.get('/infoByID/:id', (req, res) => {
 })
 
 
+
+
 // router.post('/update/:id',function(req,res){
 //     User.findOneAndUpdate({id:req.params.id},{$set:{name:req.body.name , email:req.body.email}},{new:true},function(err,result){
 //          if(err) console.log(err.message) ;
@@ -151,12 +151,35 @@ router.get('/infoByID/:id', (req, res) => {
      
 //      })
 //   });
-router.post('/update',function(req,res){
-    User.findById(req.body.id).updateOne({$set:{name:req.body.name , email:req.body.email , imgUrl:req.body.imgUrl}}).exec((err, result) => {
+router.post('/update/:id',function(req,res){
+    const {imgUrl,name,email} = req.body;
+    const user = !imgUrl ? {name:req.body.name , email:req.body.email }:
+    {name, email,imgUrl};
+    User.findById(req.params.id).updateOne({$set:user}).exec((err, result) => {
         res.json({
             "result": result
         })  
   });
 });
 
+
+
+router.get("/all", (req, res) => {
+    const errors = {};
+    User.find()
+      .populate("user", ["name", "avatar"])
+      .then((profiles) => {
+        if (!profiles) {
+          errors.noprofile = "there are no profile";
+          return res.status(404).json(errors);
+        }
+        res.json(profiles);
+      })
+      .catch((err) =>
+        res.status(404).json({
+          msg: "there are no profiles",
+        })
+      );
+  });
+  
 module.exports = router;

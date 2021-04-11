@@ -109,8 +109,8 @@ export const setDeleteFeed = () => {
 export const deleteComment = (commentID) => {
     return dispatch => {
         axios.get('http://localhost:5001/api/comments/deleteComment/' + commentID).then(res => {
-            //dispatch((res))
-        }).catch(err => console.log(err))
+            dispatch(setDeleteFeed())
+            dispatch(fetchMoreFeed())        }).catch(err => console.log(err))
     }
 }
 
@@ -145,7 +145,18 @@ export const addComment = (postID, content) => {
         })
     }
 }
-
+export const updateComment = (commentID, content) => {
+    return dispatch => {
+        axios.post('http://localhost:5001/api/comments/updateComment/' + commentID, {
+            "content": content
+        }).then(res => {
+            dispatch(setDeleteFeed())
+            dispatch(fetchMoreFeed())        
+            }).catch(err => {
+            console.log(err)
+        })
+    }
+}
 // Like (and Unlike) a post by PostID
 export const like = (postID) => {
     return dispatch => {
@@ -167,6 +178,17 @@ export const updatePost = (postID) => {
     }
 }
 
+export const updatePoste = (postID, content) => {
+    return dispatch => {
+        axios.post('http://localhost:5001/api/posts/updatePost/' + postID, {
+            "content": content
+        }).then(res => {
+            dispatch(updatePost(postID))
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
 export const setUpdatedPost = (data) => {
     return {
         type: SET_UPDATED_POST,

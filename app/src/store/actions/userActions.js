@@ -1,11 +1,20 @@
 import axios from 'axios'
 import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID,SET_ERROR } from './actionTypes'
 import Compressor from 'compressorjs';
+import { useSelector } from 'react-redux';
 
 // Searches user by name
 export const searchUser = (name) => {
     return dispatch => {
         axios.get('http://localhost:5001/api/users/search/' + name).then(res => {
+            dispatch(setSearchResult(res))
+        })
+    }
+}
+
+export const allUsers = () => {
+    return dispatch => {
+        axios.get('http://localhost:5001/api/users/all' ).then(res => {
             dispatch(setSearchResult(res))
         })
     }
@@ -86,9 +95,10 @@ export const removeFriendRequest = userID => {
 
 
 
-export const updateProfil = (data,file) => {
-    const { Name , Email   } = data;
 
+export const updateProfil = (data,file,userID) => {
+    const { Name , Email   } = data;
+console.log({file,data})
     return dispatch => {
         if (file) {
             new Compressor(file, {
@@ -102,8 +112,7 @@ export const updateProfil = (data,file) => {
                             'Content-Type': 'multipart/form-data'
                         }
                     }).then(res => {
-                        axios.post('http://localhost:5001/api/users/update', {
-                            id:"606426c20074b8c281c125c3",
+                        axios.post('http://localhost:5001/api/users/update/' + userID, {
                             name: Name,
                             email: Email,
                             imgUrl: res.data.file.filename
@@ -118,8 +127,7 @@ export const updateProfil = (data,file) => {
             });
         }
         else {
-        axios.post('http://localhost:5001/api/users/update' , {
-            id:"606426c20074b8c281c125c3",
+        axios.post('http://localhost:5001/api/users/update/' +userID, {
             name: Name,
             email: Email,
             

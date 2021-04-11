@@ -9,6 +9,17 @@
     
 
 }
+.textArea {
+    background-color: white;
+    width: 98%;
+    margin-top: 8px;
+    min-height: 50px;
+    color: black;
+    font-size: 16px;
+    resize: none;
+    border: rgb(232, 232, 235)   ;
+}
+
 
 .userInfo {
     color: rgb(139, 30, 30);

@@ -13,8 +13,6 @@ import DetailPostView from './views/DetailPostView/DetailPostView';
 
 const App = props => {
 
-
-  console.log({props});
   const [constructorHasRun, setConstructorHasRun] = useState(false);
 
   const constructor = () => {

@@ -16,6 +16,13 @@ const PostItem = props => {
     const calculateTime = (date) => {
         return moment(date).fromNow();
     }
+    const [postContent, setPost] = useState(props.post.content);
+
+
+    const updatePostHandler = () => {
+        props.onUpdatePost(props.post._id, document.getElementById(props.post._id).value)
+        document.getElementById(props.post._id).value = ""
+    }
 
     const addCommentHandler = () => {
         props.onAddComment(props.post._id, document.getElementById(props.post._id).value)
@@ -27,6 +34,7 @@ const PostItem = props => {
    
     }
 
+   
     let history = useHistory();
 
     const _handleClickDetails = (id) => {
@@ -74,13 +82,47 @@ const PostItem = props => {
           </div>
                   
                 )}
+   {props.post.userID._id !== props.userInfo?.data?.result?._id && (
+                <div className="col-6">
+                <button
+                   // onClick={() => {setIsModalOpen(!isModalOpen)}}
+                    className={classes.bottomIconButton}
 
+                    type="submit">
+<i class="fas fa-exclamation-triangle"></i>           </button>
+          
+          </div>
+                  
+                )}
             
                 
             </div>
           
 
-
+            { isModalOpen &&
+               <div >
+               <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
+            
+               <textarea
+               id={props.post._id} 
+                    className={classes.textArea}
+                    placeholder="What's happening??"
+                    rows="6"
+                    value={postContent}
+                    onChange={(e) => setPost(e.target.value)}
+                />
+                  
+                   <button
+                    onClick={() => { updatePostHandler() }}
+                       className={classes.submitButton}
+                       type="submit">
+                       UPDATE 
+                   </button>
+                   {/* <div className={classes.text} onClick={()=>setIsModalOpen(!isModalOpen)}>cancel</div> */}
+               </form>
+           
+               </div>  
+        }
           
             <div  className={classes.contentContainer} >
             <a href={"/details/" + props.post._id} alt="">
@@ -106,45 +148,7 @@ const PostItem = props => {
                     </div>
                 </div>
             </div>
-            { isModalOpen &&
-               <div >
-               <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
-                   <div className={classes.mediaIconsContainer}>
-                       <div>
-                           <label htmlFor="file-input">
-                               <div className={classes.plusContainer}><i className={["fas fa-plus", classes.mediaIcons].join(' ')} /></div>
-                           </label>
-                           <input id="file-input" type='file' accept="image/*" onChange={(e) => props.setFile(e.target.files[0])} />
-                       </div>
-                       {
-                           props.file ?
-                               <img className={classes.previewImage} src={URL.createObjectURL(props.file)} alt=""></img> :
-                               <img className={classes.previewImage} src={"http://localhost:5001/image/" + props.userInfo?.data?.result?.imgUrl }alt=""></img>
-                       }
-                   </div>
-                 
-                   <input
-                    
-                    className={nameInputBorder}
-                    type="text"
-                    placeholder="UPDATE POST"
-                    name="Name"
-                    value={props.name}
-                    onChange={(e) => props.setName(e.target.value)}
-                    ref={register({ required: true, minLength: 4, maxLength: 30 })}             
-                           />
-                  
-                   <div className={classes.text} >{props.errorMessage}</div>
-                   <button
-                       className={classes.submitButton}
-                       type="submit">
-                       UPDATE 
-                   </button>
-                   {/* <div className={classes.text} onClick={()=>setIsModalOpen(!isModalOpen)}>cancel</div> */}
-               </form>
            
-               </div>  
-        }
             <div className={classes.buttonsContainer}>
 
                 {
@@ -178,12 +182,17 @@ const PostItem = props => {
                 {
                     props.post.comments ?
                         props.post.comments.map((item, index) => {
+
                             return (
                                 <Comment key={index} 
                                 comment={item} 
                                 onDeleteComment={props.onDeleteComment}
+                                onUpdateComment={props.onUpdateComment}
                                 calculateTime={calculateTime}
                                 userID={userID}
+                                setContent={props.setContent}
+                                setComment={props.setComment}
+                                commentContent={props.commentContent}
                                 ></Comment>
 
                             )

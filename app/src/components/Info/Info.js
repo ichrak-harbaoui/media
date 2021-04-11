@@ -19,7 +19,9 @@ const Info = props => {
                     <label htmlFor="file-input">
                         <div className={classes.plusContainer}><i className={["fas fa-plus", classes.mediaIcons].join(' ')} /></div>
                     </label>
-                    <input id="file-input" type='file' accept="image/*" onChange={(e) => props.setFile(e.target.files[0])} />
+                    <input  name="file"id="file-input" type='file' accept="image/*" onChange={(e) => { 
+                        console.log(e.target.files);
+                        props.setFile(e.target.files[0])}} />
                 </div>
                 {
                     props.file ?

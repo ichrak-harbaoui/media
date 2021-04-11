@@ -5,6 +5,7 @@ import * as postActions from '../store/actions/postActions'
 import * as userActions from '../store/actions/userActions'
 import Feed from '../components/Feed/Feed'
 import useSocket from 'use-socket.io-client';
+import Comment from '../components/Feed/PostItem/Comment/Comment';
 const ENDPOINT = "http://localhost:5001";
 
 const FeedContainer = props => {
@@ -21,6 +22,8 @@ const FeedContainer = props => {
     }, [pageNumber]);
 
     const [content, setContent] = useState("");
+    const [commentContent, setComment] = useState("");
+
     const [type, setType] = useState(1);
     const [file, setFile] = useState('');
 
@@ -32,7 +35,12 @@ const FeedContainer = props => {
         setFile('');
     }
   
+    const UpdatePostHandler = () => {
 
+        props.onUpdatePost(content);
+        setComment(props.post.content)
+    }
+  
     const handleOnDocumentBottom = useCallback(() => {
         setPageNumber(curr => curr + 1)
 
@@ -47,6 +55,8 @@ const FeedContainer = props => {
                 id={props.id}
                 content={content}
                 setContent={setContent}
+                commentContent={commentContent}
+                setComment={setComment}
                 type={type}
                 setType={setType}
                 onCreatePost={createPostHandler}
@@ -61,7 +71,9 @@ const FeedContainer = props => {
                 isAuthenticated={props.auth.isAuthenticated}
                 onDeletePost={props.onDeletePost}
                 onDeleteComment={props.onDeleteComment}
-               postId={props.post.id}
+                onUpdatePost={props.onUpdatePost}
+                onUpdateComment={props.onUpdateComment}
+                 postId={props.post.id}
 
             />
         </>
@@ -72,6 +84,7 @@ const mapStateToProps = state => ({
     post: state.post,
     user: state.user,
     auth: state.auth,
+    comment: state.comment
 
 
 })
@@ -87,6 +100,8 @@ const mapDispatchToProps = dispatch => {
         onClickFeed:(id) => dispatch(postActions.getPostById(id)),
         onDeletePost: (postID) => dispatch(postActions.deletePost(postID)),
         onDeleteComment: (commentID) => dispatch(postActions.deleteComment(commentID)),
+        onUpdateComment: (commentID, content) => dispatch(postActions.updateComment(commentID, content)),
+        onUpdatePost: (postID, content) => dispatch(postActions.updatePoste(postID, content)),
 
     }
 };

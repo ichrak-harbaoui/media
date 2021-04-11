@@ -61,13 +61,24 @@ const ProfileSection = props => {
             <div className={classes.container}>
             {
                 size[0] > 650 ? 
-              
-                <div onClick={toggleFriends} className={classes.RequestIcon}>
+                <><div onClick={toggleNotifications} className={classes.RequestIcon} style={{marginRight:"10px"}}>
+                <i className={["fas fa-users", activeNotifications].join(' ')}></i>
+
+
+  
+             
+            </div>
+            <div onClick={toggleNotifications} className={classes.RequestIcon} style={{marginRight:"10px"}}>
+                <i className={["fad fa-poll-h", activeNotifications].join(' ')}></i>
+                </div>
+
+                
+                    <div onClick={toggleFriends} className={classes.RequestIcon}>
                     <i className={["fas fa-user-friends", activeFriends].join(' ')}></i>
                     <div className={classes.iconContainer}>
                         <p>{props.userInfo?.data?.result?.friendRequests?.length}</p>
                     </div>
-                </div>  : <div> </div>
+                    </div> </> : <div> </div>
             }
                 
                 {

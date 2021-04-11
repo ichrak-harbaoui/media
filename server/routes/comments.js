@@ -29,7 +29,13 @@ const comment = new Comment({
         res.status(400).send({ err: err });
     }
 })
-
+router.post('/updateComment/:commentID',function(req,res){
+    Comment.findById(req.params.commentID).updateOne({$set:{content:req.body.content }}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
+  });
+});
 
 router.get('/deleteComment/:commentID', function (req, res) {
     Comment.findOneAndDelete({ _id: req.params.commentID} ).exec(function (err, result) {
@@ -37,7 +43,7 @@ router.get('/deleteComment/:commentID', function (req, res) {
       else res.send(result)
     })
     
-  });
+  })
   
 
 module.exports = router;

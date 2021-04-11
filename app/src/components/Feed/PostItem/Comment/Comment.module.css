@@ -6,6 +6,16 @@
     border-radius: 50%;
     
 }
+.textArea {
+    background-color: white;
+    width: 100%;
+    margin-top: 8px;
+    color: black;
+    font-size: 16px;
+    resize: none;
+    border: rgb(232, 232, 235)   ;
+}
+
 
 .commentOwnerText{
     font-weight: 500;
@@ -84,4 +94,3 @@
     padding: 10px;
     cursor: pointer;
 }
-

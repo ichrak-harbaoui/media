@@ -29,11 +29,13 @@ const Feed = props => {
                         userInfo={props?.userInfo}
                         content={props?.content}
                         setContent={props?.setContent}
+
                         type={props.type}
                         setType={props.setType}
                         onCreatePost={props.onCreatePost}
                         setFile={props.setFile}
                         file={props.file}
+
                     />
 
             }
@@ -52,6 +54,13 @@ const Feed = props => {
                                 onLike={props.onLike}
                                 onClickFeed={props.onClickFeed}
                                 userInfo={props.userInfo}
+                                onUpdatePost={props.onUpdatePost}
+                                onUpdateComment={props.onUpdateComment}
+                                setContent={props.setContent}
+                                setComment={props?.setComment}
+
+
+
                             />
                         )
                     }) : null

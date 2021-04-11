@@ -174,6 +174,14 @@ router.get('/post/:postID', async (req, res) => {
         })
     }
 })
+router.post('/updatePost/:postID',function(req,res){
+    Post.findById(req.params.postID).updateOne({$set:{content:req.body.content }}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
+  });
+});
+
 
 module.exports = router;
 

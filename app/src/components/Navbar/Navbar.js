@@ -65,10 +65,19 @@ const Navbar = props => {
                         <div onClick={() => { props.setOpenChatOnMobile(curr => !curr) }} className={classes.bottomIconButton}>
                             <i className="fas fa-comments"></i>
                         </div>
+
+                        
                         <div className={classes.bottomIconButton} onClick={props.toggleFriends}>
                             <i className={["fas fa-user-friends", activeFriends].join(' ')}></i>
                             <div className={classes.bottomIconContainer}>
                                 <p>{props.userInfo?.data?.result?.friendRequests?.length}</p>
+                            </div>
+                        </div>
+
+                        <div className={classes.bottomIconButton} onClick={props.toggleNotifications}>
+                            <i className={["fas fa-bell", activeNotifications].join(' ')}></i>
+                            <div className={classes.bottomIconContainer} >
+                                <p>{props.userInfo?.data?.result?.notifications?.length}</p>
                             </div>
                         </div>
                        
