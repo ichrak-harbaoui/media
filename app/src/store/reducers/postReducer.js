@@ -4,7 +4,6 @@ const initialState = {
   feed: [],
   detailPost:null
 }
-
 export default function (state = initialState, action) {
 
   switch (action.type) {

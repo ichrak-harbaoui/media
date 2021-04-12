@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID,SET_ERROR } from './actionTypes'
+import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID,SET_ERROR, GET_USER_LIST } from './actionTypes'
 import Compressor from 'compressorjs';
 import { useSelector } from 'react-redux';
 
@@ -15,11 +15,16 @@ export const searchUser = (name) => {
 export const allUsers = () => {
     return dispatch => {
         axios.get('http://localhost:5001/api/users/all' ).then(res => {
-            dispatch(setSearchResult(res))
+            dispatch(setUserListResult(res))
         })
     }
 }
-
+export const setUserListResult = res => {
+    return {
+        type: GET_USER_LIST,
+        payload: res
+    };
+};
 export const setSearchResult = res => {
     return {
         type: SEARCH_USER,
@@ -62,7 +67,7 @@ export const setUserInfo = res => {
 export const sendFriendRequest = (userID,input) => {
     return dispatch => {
         axios.post('http://localhost:5001/api/users/friendrequest/' + userID).then(res => {
-        dispatch(searchUser(input))
+            dispatch(getInfo());
         }).catch(err => console.log(err))
     }
 }
@@ -76,14 +81,16 @@ export const acceptFriendRequest = userID => {
     }
 }
 
-// Declines friend request by userID
-export const deleteFriend = userID => {
+
+export const removeFriend = userID => {
     return dispatch => {
-        axios.delete('http://localhost:5001/api/users/friend/:userID '+ userID).then(res => {
+        axios.delete('http://localhost:5001/api/users/deleteFriend/' + userID).then(res => {
             dispatch(getInfo());    
         }).catch(err => console.log(err))
     }
 }
+
+
 
 export const removeFriendRequest = userID => {
     return dispatch => {
@@ -92,7 +99,6 @@ export const removeFriendRequest = userID => {
         }).catch(err => console.log(err))
     }
 }
-
 
 
 

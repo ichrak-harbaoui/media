@@ -5,40 +5,31 @@ import * as userActions from '../store/actions/userActions'
 
 import Authh from '../components/Authh/Authh'
 import Info from '../components/Info/Info'
+import UserList from '../components/UserList/UserList';
 
-const InfoContainer = props => {
+const UserListContainer = props => {
 
-    const [file, setFile ] = useState(props.user.userInfo.data.result.file);
-    const [name, setName] = useState(props.user.userInfo.data.result.name);
-    const [email, setEmail] = useState(props.user.userInfo.data.result.email);
     const [userID, setID] = useState(props.user.userInfo.data.result._id);
 
-    const onSubmit = (data) => {
-
-        props.updateProfil(data,file,userID) 
-
-    }
+  
     useEffect(() => {
        props.allUsers();
     }, []);
 
     return (
         <>
-            <Info
+            <UserList
                 isAuthenticated={props.auth.isAuthenticated}
-                onSubmit={onSubmit}
                 errorMessage={props.auth.error}
-                setFile={setFile}
-                setName={setName}
-                setEmail={setEmail}
+                userList={props.user.userList}
+                onSendFriendRequest={props.onSendFriendRequest}
                 profileUser={props.user.profileUser}
                 userInfo={props.user.userInfo}
-                file={file}
-                name={name}
-                email={email}
+              allUsers={props.allUsers}
+              onRemoveFriend={props.onRemoveFriend}
 
                 >
-            </Info>
+            </UserList>
         </>
     )
 }
@@ -51,10 +42,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
+        onSendFriendRequest: (userID, input) => dispatch(userActions.sendFriendRequest(userID, input)),
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
         updateProfil: (data,file,userID) => dispatch(userActions.updateProfil(data,file,userID)),
-        allUsers:()=>dispatch(userActions.allUsers())
+        allUsers:()=>dispatch(userActions.allUsers()),
+        onRemoveFriend: (userID) => dispatch(userActions.removeFriend(userID)),
+
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UserListContainer)

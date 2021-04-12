@@ -74,21 +74,27 @@ router.post('/friend/:userID', async (req, res) => {
     }
 });
 
-// Deletes friend 
-router.delete('/friend/:userID', async (req, res) => {
+// Removes friend by userID
+router.delete('/deleteFriend/:userID', async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
 
     try {
         await User.findById(user._id).updateOne({ $pull: { friends: req.params.userID } });
         await User.findById(req.params.userID).updateOne({ $pull: { friends: user._id } });
+
         res.json({
-            "status": "success"
+            "status": {
+                "deletedFrom": user._id,
+                "Deleted": req.params.userID
+            }
         })
     } catch (err) {
         res.status(400).send({ err: err })
     }
 });
+
+
 
 
 // Search user by name

@@ -1,9 +1,11 @@
-import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID } from '../actions/actionTypes';
+import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID ,GET_USER_LIST} from '../actions/actionTypes';
+import UserList from '../../components/Userlist/UserList';
 
 
 const initialState = {
     userInfo: {},
     searchResult: [],
+    userList:[],
     profileUser: {},
     loading: true
 };
@@ -21,6 +23,12 @@ export default function (state = initialState, action) {
                 userInfo: action.payload,
                 loading: false
             };
+            case GET_USER_LIST:
+                return {
+                    ...state,
+                    userList: action.payload,
+                    loading: false
+                };
         case FETCH_USER_INFO_BY_ID:
             return {
                 ...state,

@@ -10,6 +10,7 @@ import ProfileView from './views/ProfileView/ProfileView'
 import info from './views/info/info'
 import InfoView from './views/info/info'
 import DetailPostView from './views/DetailPostView/DetailPostView';
+import userListView from './views/userList/userListView';
 
 const App = props => {
 
@@ -49,6 +50,11 @@ const App = props => {
             props.user.loading ? null :
               <Route exact path="/infoByID/:id" component={InfoView} />
           }
+             {
+            props.user.loading ? null :
+              <Route exact path="/all/:id" component={userListView} />
+          }
+      
           
           <Route exact path="/auth">
             <AuthView />
