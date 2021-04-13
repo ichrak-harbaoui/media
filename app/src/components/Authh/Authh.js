@@ -24,7 +24,10 @@ const Authen = props => {
                                     onSubmit={props.onSubmit}
                                     errorMessage={props.errorMessage}
                                     setFile={props.setFile}
-                                    file={props.file}>
+                                    file={props.file}
+                                    setPhone={props.setPhone}
+                                    phone={props.phone}
+                                    >
                                 </Register>
                                 
 

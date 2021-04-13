@@ -102,8 +102,9 @@ export const removeFriendRequest = userID => {
 
 
 
-export const updateProfil = (data,file,userID) => {
-    const { Name , Email   } = data;
+export const updateProfil = (data,file,phone,description,userID) => {
+    const { Name , Email  ,DateOfBirth, Description  } = data;
+    console.log({data ,phone})
 console.log({file,data})
     return dispatch => {
         if (file) {
@@ -121,6 +122,10 @@ console.log({file,data})
                         axios.post('http://localhost:5001/api/users/update/' + userID, {
                             name: Name,
                             email: Email,
+                            phone: phone,
+                            dateOfBirth: DateOfBirth,
+                            description: description,
+
                             imgUrl: res.data.file.filename
                         })
                           
@@ -136,6 +141,9 @@ console.log({file,data})
         axios.post('http://localhost:5001/api/users/update/' +userID, {
             name: Name,
             email: Email,
+            phone: phone,
+            dateOfBirth: DateOfBirth,
+            description: description,
             
         }).then(res => {
             dispatch(getInfo());    

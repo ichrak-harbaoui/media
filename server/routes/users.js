@@ -136,7 +136,7 @@ router.get('/info', (req, res) => {
 router.get('/infoByID/:id', (req, res) => {
     try {
         User.findById(req.params.id)
-            .select(['imgUrl', 'name', '_id', 'date', 'email', 'bgUrl', 'friends'])
+            .select(['imgUrl', 'name', '_id', 'date', 'email', 'phone','dateOfBirth','description','bgUrl', 'friends'])
             .exec((err, result) => {
                 res.json({
                     "result": result
@@ -158,9 +158,10 @@ router.get('/infoByID/:id', (req, res) => {
 //      })
 //   });
 router.post('/update/:id',function(req,res){
-    const {imgUrl,name,email} = req.body;
-    const user = !imgUrl ? {name:req.body.name , email:req.body.email }:
-    {name, email,imgUrl};
+    const {imgUrl,name,email,phone,dateOfBirth,description} = req.body;
+    const user = !imgUrl ? {name:req.body.name , email:req.body.email 
+        , phone:req.body.phone , dateOfBirth:req.body.dateOfBirth ,description:req.body.description  }:
+    {name, email,phone,dateOfBirth,description,imgUrl};
     User.findById(req.params.id).updateOne({$set:user}).exec((err, result) => {
         res.json({
             "result": result

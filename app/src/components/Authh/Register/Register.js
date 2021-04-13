@@ -1,12 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
 import classes from "./Register.module.css"
 
 const Register = props => {
     const { register, handleSubmit, errors } = useForm();
     const { onSwitchState } = props;
     const nameInputBorder = errors.Name ? classes.errorInput : classes.input
+    const phoneInputBorder = errors.Phone ? classes.errorInput : classes.input
+    const dateOfBirthInputBorder = errors.DateOfBirth ? classes.errorInput : classes.input
+
+    
     const mailInputBorder = errors.Email ? classes.errorInput : classes.input
     const passwordInputBorder = errors.Password ? classes.errorInput : classes.input
 
@@ -40,6 +45,23 @@ const Register = props => {
                 name="Email"
                 ref={register({ required: true, pattern: /^\S+@\S+$/i })}
             />
+
+            <PhoneInput
+             className={phoneInputBorder}
+             name="Phone"
+             placeholder="Phone Number"
+             id="phone"
+             value={props.phone}
+             onChange={props.setPhone}
+              />
+              <input
+              className={dateOfBirthInputBorder}
+                name="DateOfBirth"
+                id="dateOfBirth"
+                  type= "date"
+                  ref={register({ required: true, minLength: 4, maxLength: 30 })}
+
+              />
             <input
                 className={passwordInputBorder}
                 type="password"

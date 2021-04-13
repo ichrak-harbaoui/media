@@ -27,7 +27,8 @@ const UserListContainer = props => {
                 userInfo={props.user.userInfo}
               allUsers={props.allUsers}
               onRemoveFriend={props.onRemoveFriend}
-
+              onAcceptFriendRequest={props.onAcceptFriendRequest}
+              onRemoveFriendRequest={props.onRemoveFriendRequest}
                 >
             </UserList>
         </>
@@ -47,6 +48,8 @@ const mapDispatchToProps = dispatch => {
         updateProfil: (data,file,userID) => dispatch(userActions.updateProfil(data,file,userID)),
         allUsers:()=>dispatch(userActions.allUsers()),
         onRemoveFriend: (userID) => dispatch(userActions.removeFriend(userID)),
+        onAcceptFriendRequest: userID => dispatch(userActions.acceptFriendRequest(userID)),
+        onRemoveFriendRequest: userID => dispatch(userActions.removeFriendRequest(userID)),
 
     }
 };

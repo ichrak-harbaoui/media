@@ -6,9 +6,9 @@ import { SET_CURRENT_USER, LOG_OUT, SET_ERROR } from './actionTypes'
 import Compressor from 'compressorjs';
 
 // Register new user
-export const registerUser = (data, file) => {
-    const { Name, Email, Password } = data;
-
+export const registerUser = (data,phone, file) => {
+    const { Name, Email ,DateOfBirth, Password } = data;
+console.log({data})
     return dispatch => {
         if (file) {
             new Compressor(file, {
@@ -27,6 +27,8 @@ export const registerUser = (data, file) => {
                         axios.post('http://localhost:5001/api/auth/register', {
                             name: Name,
                             email: Email,
+                            phone: phone,
+                            dateOfBirth: DateOfBirth,
                             password: Password,
                             imgUrl: res.data.file.filename
                         })
@@ -49,6 +51,8 @@ export const registerUser = (data, file) => {
             axios.post('http://localhost:5001/api/auth/register', {
                 name: Name,
                 email: Email,
+                phone: phone,
+                dateOfBirth: DateOfBirth,
                 password: Password
             })
                 .then(res => {

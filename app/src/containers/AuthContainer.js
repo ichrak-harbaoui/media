@@ -8,6 +8,7 @@ const AuthContainer = props => {
 
     const [switchState, setSwitchState] = useState(true);
     const [file, setFile] = useState('');
+    const [phone, setPhone] = useState('');
 
     const handleSwitch = () => {
         setSwitchState(curr => !curr);
@@ -16,7 +17,7 @@ const AuthContainer = props => {
     const onSubmit = (data) => {
         switchState ?
             props.onLogin(data) :
-            props.onRegister(data,file)
+            props.onRegister(data,phone,file)
            
 
     }
@@ -30,7 +31,10 @@ const AuthContainer = props => {
                 errorMessage={props.auth.error}
                 switchState={switchState}
                 setFile={setFile}
-                file={file}>
+                file={file}
+                setPhone={setPhone}
+                phone={phone}
+                >
             </Authh>
         </>
     )
@@ -42,7 +46,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegister: (name, email, password,file) => dispatch(authActions.registerUser(name, email, password,file)),
+        onRegister: (data,phone,file) => dispatch(authActions.registerUser(data,phone,file)),
         onLogin: (email, password) => dispatch(authActions.loginUser(email, password)),
 
     }

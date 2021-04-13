@@ -1,5 +1,4 @@
 import { SEARCH_USER, GET_USER_INFO, FETCH_USER_INFO_BY_ID ,GET_USER_LIST} from '../actions/actionTypes';
-import UserList from '../../components/Userlist/UserList';
 
 
 const initialState = {

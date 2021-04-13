@@ -75,7 +75,7 @@ const Navbar = props => {
                         </div>
 
                         <div className={classes.bottomIconButton} onClick={props.toggleNotifications}>
-                            <i className={["fas fa-bell", activeNotifications].join(' ')}></i>
+                            <i className={["fas fa-envelope", activeNotifications].join(' ')}></i>
                             <div className={classes.bottomIconContainer} >
                                 <p>{props.userInfo?.data?.result?.notifications?.length}</p>
                             </div>

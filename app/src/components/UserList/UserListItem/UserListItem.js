@@ -30,10 +30,12 @@ const UserListItem = props => {
                                             >
                                                {
                                                     (user.friendRequests.filter(e => e === props.userInfo?.data?.result?._id).length === 0) &&
+                                                    (props.userInfo?.data?.result?.friendRequests.filter(e => e._id === user._id).length === 0) &&
+
                                                         (props.userInfo?.data?.result?.friends.filter(e => e._id === user._id).length === 0) &&
                                                         (props.userInfo?.data?.result?._id !== user._id) ?
-                                                        <div onClick={() => { props.onSendFriendRequest(user._id, props.searchInput) }
-                                                        
+                                                        <div onClick={() => { props.onSendFriendRequest(user._id, props.searchInput)  }
+
                                                         }>
                                                             <IconButton iconType="fas fa-user-plus"/>
                                                         </div> : <div></div>
@@ -52,13 +54,31 @@ const UserListItem = props => {
                                                             <IconButton iconType="fas fa-user-minus"/>
                                                         </div> : <div></div>
                                                 }
+
+{
+                                                   (user.friendRequests.filter(e => e !== props.userInfo?.data?.result?._id).length === 0) &&
+                                                   (props.userInfo?.data?.result?.friendRequests.filter(e => e._id === user._id).length !== 0) &&
+
+                                                   (props.userInfo?.data?.result?._id !== user._id) ?
+                                                   <div >
+                                                
+                                                   
+                                                   <IconButton
+                                                        iconType="fas fa-thumbs-up"
+                                                        onClick={() => { props.onAcceptFriendRequest(user._id) }}
+                                                    />
+                                                    <IconButton
+                                                        iconType="fas fa-thumbs-down"
+                                                        onClick={() => { props.onRemoveFriendRequest(user._id) }}
+                                                    />                                                        </div> : <div></div>
+                                                }
+    
                                             </Cardd>
                                             </div>
                                         )
                                     })
                                     : null
                             }
-
 
 
      </div>

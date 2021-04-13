@@ -3,13 +3,18 @@ import React, { useState } from 'react'
 
 import classes from "./Register.module.css"
 
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
 const Info = props => {
     const { register, handleSubmit, errors } = useForm();
     const { onSwitchState } = props;
     const nameInputBorder = errors.Name ? classes.errorInput : classes.input
     const mailInputBorder = errors.Email ? classes.errorInput : classes.input
     const passwordInputBorder = errors.Password ? classes.errorInput : classes.input
- 
+    const descriptionInputBorder = errors.Description ? classes.errorInput : classes.input
+
+    const phoneInputBorder = errors.Phone ? classes.errorInput : classes.input
+    const dateOfBirthInputBorder = errors.DateOfBirth ? classes.errorInput : classes.input
 
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
@@ -39,7 +44,7 @@ const Info = props => {
              value={props.name}
              onChange={(e) => props.setName(e.target.value)}
              ref={register({ required: true, minLength: 4, maxLength: 30 })}             
-                    />
+            />
             <input
                 className={mailInputBorder}
                 type="text"
@@ -48,6 +53,31 @@ const Info = props => {
                 value={props.email}
                 onChange={(e) => props.setEmail(e.target.value)}
                 ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+            />
+            <PhoneInput
+             className={phoneInputBorder}
+             name="Phone"
+             placeholder="Phone Number"
+             id="phone"
+             value={props.phone}
+             onChange={props.setPhone}
+              />
+              <input
+              className={dateOfBirthInputBorder}
+                name="DateOfBirth"
+                id="dateOfBirth"
+                  type= "date"
+                  ref={register({ required: true, minLength: 4, maxLength: 30 })}
+                  value={props.birthDay}
+                  onChange={(e) => props.setBirthday(e.target.value)}
+              />
+                <textarea
+             
+             className={descriptionInputBorder}
+             placeholder="Description"
+             name="Description"
+             value={props.description}
+             onChange={(e) => props.setDescription(e.target.value)}
             />
             
             <div className={classes.text} >{props.errorMessage}</div>

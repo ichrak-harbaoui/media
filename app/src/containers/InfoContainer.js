@@ -12,10 +12,13 @@ const InfoContainer = props => {
     const [name, setName] = useState(props.user.userInfo.data.result.name);
     const [email, setEmail] = useState(props.user.userInfo.data.result.email);
     const [userID, setID] = useState(props.user.userInfo.data.result._id);
+    const [phone, setPhone] = useState(props.user.userInfo.data.result.phone);
+    const [birthday, setBirthday] = useState(props.user.userInfo.data.result.dateOfBirth);
+    const [description, setDescription] = useState(props.user.userInfo.data.result.description);
 
     const onSubmit = (data) => {
 
-        props.updateProfil(data,file,userID) 
+        props.updateProfil(data,file,phone,description,userID) 
 
     }
     useEffect(() => {
@@ -36,7 +39,12 @@ const InfoContainer = props => {
                 file={file}
                 name={name}
                 email={email}
-
+                setPhone={setPhone}
+                phone={phone}
+                setBirthday={setBirthday}
+                birthDay={birthday}
+                setDescription={setDescription}
+                description={description}
                 >
             </Info>
         </>
@@ -52,7 +60,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
-        updateProfil: (data,file,userID) => dispatch(userActions.updateProfil(data,file,userID)),
+        updateProfil: (data,file,phone,description,userID) => dispatch(userActions.updateProfil(data,file,phone,description,userID)),
         allUsers:()=>dispatch(userActions.allUsers())
     }
 };

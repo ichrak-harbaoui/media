@@ -15,15 +15,22 @@ const ProfileInfo = props => {
             <img src={"http://localhost:5001/image/"+props.profileUser.imgUrl} className={classes.profileImg} alt=""></img>
             <div className={classes.info}>
                 <div className={classes.innerInfo}>
+
+                <div>
+                <div className={classes.nameText}>{props.profileUser.name}</div>
+
+                <div className={classes.dateText}>
+                <i className="fas fa-phone-alt"></i>{props.profileUser.phone}</div>
+                <div className={classes.dateText}> <i className="fas fa-birthday-cake"></i>{props.profileUser.dateOfBirth}</div>
+                
+                </div>
                     <div>
-                        <div className={classes.nameText}>{props.profileUser.name}</div>
-                        <div className={classes.dateText}>{moment(props.profileUser.date).fromNow()}</div>
+                        <div className={classes.dateText}> member since : {moment(props.profileUser.date).fromNow()}</div>
                         <div className={classes.friends}>
                             {props.profileUser.friends.length} Friends
                         </div>
                     </div>
-
-    
+               
                 </div>
             </div>
         </div>
