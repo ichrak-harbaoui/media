@@ -18,6 +18,18 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    fakePost: {
+        type: Boolean,
+        default: false
+    },
+    fake:[ {
+         type: mongoose.Types.ObjectId, ref: 'User' 
+
+    }],
+    nofake:[ {
+         type: mongoose.Types.ObjectId, ref: 'User' 
+
+    }],
     comments: [
         { type: mongoose.Types.ObjectId, ref: 'Comment' }
     ],

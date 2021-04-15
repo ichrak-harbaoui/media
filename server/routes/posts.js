@@ -12,13 +12,47 @@ router.get('/:page', verify, (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
     User.findById(user._id).select("friends").then(data => {
-
         // Added yourself into friends array to show your posts
         data.friends.push(user._id)
         const query = Post.find({
-            "userID": data.friends
+            "userID": data.friends,
+            "fakePost":false
+
         })
-            .sort({ "date": -1 })
+            .sort({ "date": -1  })
+            .skip(pageSize * req.params.page)
+            .limit(pageSize)
+            .populate({
+                path: 'comments', select: ['content', 'date'], populate: {
+                    path: "userID", select: ['name', 'imgUrl']
+                }
+            })
+            .populate({
+                path: 'userID', select: ['name','imgUrl']
+            })
+            .exec((err, result) => {
+                res.json({
+                    "result": result
+                })
+            });
+    });
+});
+
+
+// Gets logged user's friends' posts fake 
+router.get('fakePost/:page', verify, (req, res) => {
+    const pageSize = 5;
+    const token = req.header('Authorization');
+    const user = jwt.decode(token);
+    User.findById(user._id).select("friends").then(data => {
+        // Added yourself into friends array to show your posts
+        data.friends.push(user._id)
+        const query = Post.find({
+            "userID": data.friends,
+            "fakePost":true
+
+        })
+            .sort({ "date": -1  })
             .skip(pageSize * req.params.page)
             .limit(pageSize)
             .populate({
@@ -41,7 +75,8 @@ router.get('/:page', verify, (req, res) => {
 router.get('/profile/:userID/:page', (req, res) => {
     const pageSize = 5;
     const query = Post.find({
-        "userID": new mongoose.Types.ObjectId(req.params.userID)
+        "userID": new mongoose.Types.ObjectId(req.params.userID),
+        "fakePost":false
     })
         .sort({ "date": -1 })
         .skip(pageSize * req.params.page)
@@ -68,8 +103,6 @@ router.get('/profile/:userID/:page', (req, res) => {
 router.post('/', verify, async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
-    
-    
     const post = new Post({
 
         userID: user._id,
@@ -103,7 +136,6 @@ router.get('/deletePost/:postID', function (req, res) {
     
   });
   
-// Removes friend request by userID
 router.delete('/post/:id', async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
@@ -181,6 +213,91 @@ router.post('/updatePost/:postID',function(req,res){
         })  
   });
 });
+
+router.post('/fakePost/:postID',function(req,res){
+    Post.findById(req.params.postID).updateOne({$set:{fakePost:true }}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
+  });
+});
+
+
+router.post('/vote/:postID',function(req,res){
+    Post.findById(req.params.postID).updateOne({$set:{fakePost:true }}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
+  });
+});
+
+// Increment or decrement fake
+router.post('/fake/:postID', async (req, res) => {
+    const token = req.header('Authorization');
+    const user = jwt.decode(token);
+
+    let liked = false;
+
+    await Post.findById(req.params.postID).select('fake').then(data => {
+        // Check user if already liked the post
+        liked = data.fake.includes(user._id)
+  
+    })
+    try {
+        if (liked) {
+
+            await Post.findById(req.params.postID).updateOne({ $pull: { fake: user._id } });
+            
+            return res.json({
+                "response": "unlike"
+            })
+        }
+        else {
+            await Post.findById(req.params.postID).updateOne({ $push: { fake: user._id } });
+            return res.json({
+                "response": "like"
+            })
+        }
+    } catch (error) {//
+    }
+
+});
+
+// Increment or decrement fake
+router.post('/nofake/:postID', async (req, res) => {
+    const token = req.header('Authorization');
+    const user = jwt.decode(token);
+
+    let liked = false;
+
+    await Post.findById(req.params.postID).select('nofake').then(data => {
+        // Check user if already liked the post
+       
+        liked = data.nofake.includes(user._id)
+    })
+    try {
+        if (liked) {
+            await Post.findById(req.params.postID).updateOne({ $pull: { nofake: user._id } });
+
+
+            return res.json({
+                "response": "unlike"
+            })
+        }
+        else {
+            await Post.findById(req.params.postID).updateOne({ $push: { nofake: user._id } });
+            return res.json({
+                "response": "like"
+            })
+        }
+    } catch (error) {//
+    }
+
+});
+
+
+
+
 
 
 module.exports = router;
