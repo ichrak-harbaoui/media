@@ -6,6 +6,8 @@ import { Redirect } from 'react-router'
 
 import AuthView from './views/AuthView/AuthView'
 import HomeView from './views/HomeView/HomeView'
+import FakeNewsView from './views/FakeNewsView/FakeNewsView'
+
 import ProfileView from './views/ProfileView/ProfileView'
 import info from './views/info/info'
 import InfoView from './views/info/info'
@@ -34,6 +36,12 @@ const App = props => {
             props.user.loading ? null :
               <Route exact path="/">
                 <HomeView />
+              </Route>
+          }
+             {
+            props.user.loading ? null :
+              <Route exact path="/fakeNews">
+                <FakeNewsView />
               </Route>
           }
           {

@@ -40,7 +40,7 @@ router.get('/:page', verify, (req, res) => {
 
 
 // Gets logged user's friends' posts fake 
-router.get('fakePost/:page', verify, (req, res) => {
+router.get('/fakePosts/:page', verify, (req, res) => {
     const pageSize = 5;
     const token = req.header('Authorization');
     const user = jwt.decode(token);
@@ -50,7 +50,6 @@ router.get('fakePost/:page', verify, (req, res) => {
         const query = Post.find({
             "userID": data.friends,
             "fakePost":true
-
         })
             .sort({ "date": -1  })
             .skip(pageSize * req.params.page)
@@ -98,7 +97,31 @@ router.get('/profile/:userID/:page', (req, res) => {
 
 });
 
+router.get('/profileFake/:userID/:page', (req, res) => {
+    const pageSize = 5;
+    const query = Post.find({
+        "userID": new mongoose.Types.ObjectId(req.params.userID),
+        "fakePost":true
+    })
+        .sort({ "date": -1 })
+        .skip(pageSize * req.params.page)
+        .limit(pageSize)
+        .populate({
+            path: 'comments', select: ['content', 'date'], populate: {
+                path: "userID", select: ['name', 'imgUrl']
+            }
+        })
+        .populate({
+            path: 'userID', select: ['name','imgUrl']
+        })
+        .exec((err, result) => {
+            res.json({
+                "result": result
+            })
+        });
 
+
+});
 // Create new post and attach it to the user's post array
 router.post('/', verify, async (req, res) => {
     const token = req.header('Authorization');

@@ -2,6 +2,8 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOG_OUT = 'LOG_OUT';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_POST_BY_ID = 'SET_POST_BY_ID';
+export const FETCH_MORE_FAKE_FEED = 'FETCH_MORE_FAKE_FEED';
+
 
 export const SEARCH_USER = 'SEARCH_USER';
 

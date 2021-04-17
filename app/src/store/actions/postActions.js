@@ -52,12 +52,7 @@ export const createPost = (content, type, file) => {
 
     }
 
-
-
-
 }
-
-
 
 
 export const fakepost = (postID) => {
@@ -70,6 +65,17 @@ export const fakepost = (postID) => {
             }).catch(err => {
             console.log(err)
         })
+    }
+}
+export const fetchMoreFakeFeed = (page) => {
+    return dispatch => {
+        axios.get('http://localhost:5001/api/posts/fakePosts/' + page, {
+        })
+            .then(res => {
+                //console.log(res)
+                dispatch(setFetchMoreFeed(res))
+            })
+            .catch(err => { console.log(err) })
     }
 }
 
@@ -99,7 +105,17 @@ export const fetchMoreProfileFeed = (id, page) => {
             .catch(err => { console.log(err) })
     }
 }
-
+export const fetchMoreProfileFakeFeed = (id, page) => {
+    return dispatch => {
+        axios.get('http://localhost:5001/api/posts/profileFake/' + id + "/" + page, {
+        })
+            .then(res => {
+                //console.log(res)
+                dispatch(setFetchMoreFeed(res))
+            })
+            .catch(err => { console.log(err) })
+    }
+}
 
 export const setFetchMoreFeed = (data) => {
     return {
@@ -107,6 +123,8 @@ export const setFetchMoreFeed = (data) => {
         payload: data
     }
 }
+
+
 
 export const deletePost = (postID) => {
     return dispatch => {
