@@ -58,6 +58,7 @@ const Feed = props => {
                                 onUpdateComment={props.onUpdateComment}
                                 setContent={props.setContent}
                                 setComment={props?.setComment}
+                                onFakePost={props?.onFakePost}
 
 
 

@@ -73,6 +73,8 @@ const FeedContainer = props => {
                 onDeleteComment={props.onDeleteComment}
                 onUpdatePost={props.onUpdatePost}
                 onUpdateComment={props.onUpdateComment}
+                onFakePost={props.onFakePost}
+
                  postId={props.post.id}
 
             />
@@ -102,6 +104,8 @@ const mapDispatchToProps = dispatch => {
         onDeleteComment: (commentID) => dispatch(postActions.deleteComment(commentID)),
         onUpdateComment: (commentID, content) => dispatch(postActions.updateComment(commentID, content)),
         onUpdatePost: (postID, content) => dispatch(postActions.updatePoste(postID, content)),
+        onFakePost: (postID) => dispatch(postActions.fakepost(postID)),
+
 
     }
 };

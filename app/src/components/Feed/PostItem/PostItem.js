@@ -33,6 +33,11 @@ const PostItem = props => {
         props.onDeletePost(props.post._id)
    
     }
+    const fakePostHandler = () => {
+        props.onFakePost(props.post._id)
+   
+    }
+
 
    
     let history = useHistory();
@@ -85,13 +90,13 @@ const PostItem = props => {
    {props.post.userID._id !== props.userInfo?.data?.result?._id && (
                 <div className="col-6">
                 <button
-                   // onClick={() => {setIsModalOpen(!isModalOpen)}}
+                    onClick={() => { fakePostHandler() }}
                     className={classes.bottomIconButton}
 
                     type="submit">
-<i class="fas fa-exclamation-triangle"></i>           </button>
+                    <i className="fas fa-exclamation-triangle"></i>           </button>
           
-          </div>
+                 </div>
                   
                 )}
             

@@ -57,6 +57,23 @@ export const createPost = (content, type, file) => {
 
 }
 
+
+
+
+export const fakepost = (postID) => {
+    return dispatch => {
+        axios.post('http://localhost:5001/api/posts/fakePost/' + postID, {
+            
+        }).then(res => {
+            dispatch(setDeleteFeed())
+            dispatch(fetchMoreFeed())        
+            }).catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+
 // Fetches feed for desired page number
 export const fetchMoreFeed = (page) => {
     return dispatch => {
@@ -113,6 +130,7 @@ export const deleteComment = (commentID) => {
             dispatch(fetchMoreFeed())        }).catch(err => console.log(err))
     }
 }
+
 
 
 // Fetches a post by post id ( Used for updates )

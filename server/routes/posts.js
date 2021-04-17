@@ -223,14 +223,6 @@ router.post('/fakePost/:postID',function(req,res){
 });
 
 
-router.post('/vote/:postID',function(req,res){
-    Post.findById(req.params.postID).updateOne({$set:{fakePost:true }}).exec((err, result) => {
-        res.json({
-            "result": result
-        })  
-  });
-});
-
 // Increment or decrement fake
 router.post('/fake/:postID', async (req, res) => {
     const token = req.header('Authorization');
