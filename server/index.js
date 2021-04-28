@@ -12,6 +12,8 @@ const methodOverride = require('method-override');
 const path = require('path');
 const PORT = process.env.PORT || 5001
 const http = require("http");
+const cron = require('node-cron');
+const Post = require('./model/Post');
 
 const server = http.createServer(app);
 
@@ -111,6 +113,32 @@ const io = socketApi.io;
 
 io.attach(server)
 
+const  checkVote =  async () => {
+  console.log('here');
+const posts=  Post.find().populate({
+    path: 'fake', select: ['_id']
+}).populate({
+    path: 'nofake', select: ['_id']
+}).exec( async (err, _result) => {
+
+_result.forEach( async el=> {
+  const nbrNoFake=el.nofake.length; 
+  const nbrFake=el.fake.length;
+  const sommeVote = nbrNoFake+ nbrFake;
+  if(nbrFake > sommeVote/2){
+    await Post.findOneAndDelete({ _id: el._id}).exec();
+  }
+else if (nbrNoFake > sommeVote/2 ){
+   await Post.findById({_id: el._id}).updateOne({$set:{fakePost:false }}).exec();
+}
+
+}
+  
+  );
+});
+
+
+}
 
 
 // Route Middlewares
@@ -121,4 +149,9 @@ app.use('/api/users', usersRouter);
 app.use('/api/chat',chatRouter);
 
 app.use(express.static(__dirname + '/client'));
+
 server.listen(PORT, () => console.log('Up and running...'))
+cron.schedule('* * * * *', async  () => {
+  await checkVote();
+      console.log('running a task every minute');
+    });

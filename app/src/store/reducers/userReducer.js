@@ -17,6 +17,7 @@ export default function (state = initialState, action) {
                 searchResult: action.payload
             };
         case GET_USER_INFO:
+            console.log({x:action.payload});
             return {
                 ...state,
                 userInfo: action.payload,

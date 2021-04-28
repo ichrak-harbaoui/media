@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { fetchMoreFeed } from 'store/actions/postActions'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { useForm } from 'react-hook-form'
+import { nofake } from '../../../store/actions/postActions';
 
 const PostItem = props => {
     const { register, handleSubmit, errors } = useForm();
@@ -130,11 +131,11 @@ const PostItem = props => {
             }
             <div className={classes.contentInfo}>
                 <div>
-                    <span style={{ fontWeight: "500" }}>{props.post.likes.length} Likes</span>
+                    <span style={{ fontWeight: "500" }}>{props.post.nofake.length}  Official </span>
                 </div>
                 <div className={classes.contentCommentInfo}>
                     <div style={{ marginRight: "5px" }}>
-                        <span>{props.post.comments.length} comments</span>
+                        <span>{props.post.fake.length} Fake</span>
                     </div>
                     <div>
                     </div>
@@ -146,14 +147,13 @@ const PostItem = props => {
                 {
                     props.userInfo.data ?
                         <button
-                            //onClick={() => props.onLike(props.post._id)}
+                            onClick={() => props.onNoFake(props.post._id,props.userInfo.data.result._id)}
                             className={classes.submitButton}
                             type="submit">
                             {
-
-                                props.post.likes.includes(props.userInfo.data.result._id) ?
-                                    <div ><i style={{ color: "#B80C09" }} className="fa fa-smile-o" aria-hidden="true">Fake</i> </div> :
-                                    <div><i className="fa fa-smile-o" aria-hidden="true"></i>Official</div>
+                                props.post.nofake.includes(props.userInfo.data.result._id) ?
+                                    <div ><i style={{ color: "#B80C09",marginRight:10 }} className="fa fa-smile-o" aria-hidden="true">Official</i> </div> :
+                                    <div ><i style={{ marginRight:10 }}  className="fa fa-smile-o" aria-hidden="true"></i>Official</div>
                             }
                         </button>
                         : null
@@ -161,14 +161,14 @@ const PostItem = props => {
            {
                     props.userInfo.data ?
                         <button
-                            //onClick={() => props.onLike(props.post._id)}
+                            onClick={() => props.onFake(props.post._id,props.userInfo.data.result._id)}
                             className={classes.submitButton}
                             type="submit">
                             {
 
-                                props.post.likes.includes(props.userInfo.data.result._id) ?
-                                    <div ><i style={{ color: "#B80C09" }} className="fa fa-frown-o" aria-hidden="true">Fake</i> </div> :
-                                    <div><i className="fa fa-frown-o" aria-hidden="true"></i>Fake</div>
+                                props.post.fake.includes(props.userInfo.data.result._id) ?
+                                    <div ><i style={{ color: "#B80C09" ,marginRight:10}} className="fa fa-frown-o" aria-hidden="true">Fake</i> </div> :
+                                    <div ><i style={{ marginRight:10 }}  className="fa fa-frown-o" aria-hidden="true"></i>Fake</div>
                             }
                         </button>
                         : null

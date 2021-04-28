@@ -204,6 +204,26 @@ export const like = (postID) => {
         })
     }
 }
+export const fake = (postID,userID) => {
+    return dispatch => {
+        axios.post('http://localhost:5001/api/posts/fake/' + postID + '/'+ userID, {
+        }).then(res => {
+            dispatch(updatePost(postID))
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
+export const nofake = (postID,userID) => {
+    return dispatch => {
+        axios.post('http://localhost:5001/api/posts/nofake/' + postID+ '/'+ userID, {
+        }).then(res => {
+            dispatch(updatePost(postID))
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
 
 export const updatePost = (postID) => {
     return dispatch => {

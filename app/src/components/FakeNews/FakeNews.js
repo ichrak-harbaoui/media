@@ -34,7 +34,8 @@ const FakeNews = props => {
                             setContent={props.setContent}
                             setComment={props?.setComment}
                             onFakePost={props?.onFakePost}
-
+                            onFake={props.onFake}
+                            onNoFake={props.onNoFake}
                             />
                         )
                     }) : null

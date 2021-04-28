@@ -57,6 +57,9 @@ const Chatt = props => {
                                                     onSubmitChatMessage={props.onSubmitChatMessage}
                                                     chatMessage={props.chatMessage}
                                                     setChatMessageHandler={props.setChatMessageHandler}
+                                                    onRemoveMsg={props.onRemoveMsg}
+                                                    chats={props.chats}
+
                                                 /> : null
                                         )
                                     })

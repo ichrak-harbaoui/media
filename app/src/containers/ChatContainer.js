@@ -28,6 +28,8 @@ const ChatContainer = props => {
         // eslint-disable-next-line 
     }, [props.user.userInfo.data.result._id, socket]);
 
+
+
     const submitChatMessage = (id) => {
         return event => {
             event.preventDefault();
@@ -40,7 +42,9 @@ const ChatContainer = props => {
             }
 
             props.onNewMessage(message, 0)
+            socket.emit("notif", message);
             socket.emit("chat message", message);
+
         }
     }
     return (
@@ -57,6 +61,7 @@ const ChatContainer = props => {
                 setChatMessageHandler={setChatMessageHandler}
                 userID={props.user.userInfo.data.result._id}
                 openChatOnMobile={props.openChatOnMobile}
+                onRemoveMsg={props.onRemoveMsg}
             />
         </div>
     )
@@ -72,7 +77,8 @@ const mapDispatchToProps = dispatch => {
         onNewChat: (userID, id, name, imgUrl, activeChats) => dispatch(chatActions.startNewChat(userID, id, name, imgUrl, activeChats)),
         onCloseChat: (id) => dispatch(chatActions.closeChat(id)),
         onChangeSize: (id) => dispatch(chatActions.chatSizeHandler(id)),
-        onNewMessage: (message, params) => dispatch(chatActions.newMessageHandler(message, params))
+        onNewMessage: (message, params) => dispatch(chatActions.newMessageHandler(message, params)),
+        onRemoveMsg: (msgID,userID, id, activeChats) => dispatch(chatActions.removeMsg(msgID,userID, id, activeChats))
     }
 };
 

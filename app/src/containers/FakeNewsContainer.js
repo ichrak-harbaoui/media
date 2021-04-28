@@ -63,6 +63,9 @@ const FakeNewsContainer = props => {
                 onUpdatePost={props.onUpdatePost}
                 onFakePost={props.onFakePost}
                 postId={props.post.id}
+                onFake={props.onFake}
+                onNoFake={props.onNoFake}
+
 
             />
         </>
@@ -88,6 +91,10 @@ const mapDispatchToProps = dispatch => {
         onFetchFakeFeed: (page) => dispatch(postActions.fetchMoreFakeFeed(page)),
         onFetchProfileFeed: (id, page) => dispatch(postActions.fetchMoreProfileFeed(id, page)),
         onFetchFeed: (page) => dispatch(postActions.fetchMoreFeed(page)),
+        onFake: (postID,userID) => dispatch(postActions.fake(postID,userID)),
+        onNoFake: (postID,userID) => dispatch(postActions.nofake(postID,userID)),
+
+
 
 
     }

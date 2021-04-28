@@ -65,15 +65,23 @@ const ProfileSection = props => {
  
 
                 <a href={"/all/" + props.userInfo?.data?.result?._id} alt="" className={classes.userName}>
-                    <i className={"fas fa-users"}></i></a> 
+                    <i className={"fas fa-users"} style={{color:"white"}}></i></a> 
             
              
+
+            </div>
+            <div  className={classes.RequestIcon} style={{marginRight:"10px"}}>
+ 
+
+                <a href={"/fakeNews" } alt="" className={classes.userName}>
+                    <i className={"fas fa-box"} style={{color:"white"}}></i></a> 
+            
             </div>
 
-            <div onClick={toggleFriends} className={classes.RequestIcon}>
-                    <i className={["fas fa-envelope", activeFriends].join(' ')}></i>
+            <div onClick={toggleNotifications} className={classes.RequestIcon}>
+                    <i className={["fas fa-envelope", activeNotifications].join(' ')}></i>
                     <div className={classes.iconContainer}>
-                        <p>{props.userInfo?.data?.result?.friendRequests?.length}</p>
+                        <p>{props.userInfo?.data?.result?.notifications?.length}</p>
                     </div>
                     </div> 
             

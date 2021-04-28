@@ -57,11 +57,20 @@ export const fetchMessageHistory = (fromID, toID, activeChats) => {
             axios.get('http://localhost:5001/api/chat/' + fromID + "/" + toID)
                 .then(res => {
                     dispatch(setFetchMessageHistory(res, toID))
+                console.log(res);
                 }).catch(err => {
                     console.log(err)
                 })
         }
 
+    }
+}
+
+export const removeMsg = (msgID,userID, id, activeChats) => {
+    return dispatch => {
+        axios.delete('http://localhost:5001/api/chat/deleteMsg/' + msgID).then(res => {
+            dispatch(fetchMessageHistory(userID, id, activeChats))
+                }).catch(err => console.log(err))
     }
 }
 

@@ -245,9 +245,20 @@ router.post('/fakePost/:postID',function(req,res){
   });
 });
 
+router.post('/fakePost/:postID/:fake',function(req,res){
+    if(req.params.fake == true )
+    Post.findOneAndDelete({ _id: req.params.postID} ).exec();
+    else
+    Post.findById(req.params.postID).updateOne({$set:{fakePost:false }}).exec((err, result) => {
+        res.json({
+            "result": result
+        })  
+  });
+});
+
 
 // Increment or decrement fake
-router.post('/fake/:postID', async (req, res) => {
+const fake = async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
 
@@ -276,10 +287,11 @@ router.post('/fake/:postID', async (req, res) => {
     } catch (error) {//
     }
 
-});
+}
 
 // Increment or decrement fake
-router.post('/nofake/:postID', async (req, res) => {
+
+const noFake = async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
 
@@ -307,13 +319,34 @@ router.post('/nofake/:postID', async (req, res) => {
         }
     } catch (error) {//
     }
+}
+const checkFakeNews = async (req, res,next)=>{
+    const {postID,userID} = req.params;
+   const post =  await Post.findById(postID) ;
+   if(!post)  return res.json({
+    "response": "there is no post"})
+    const checkRoute = req.route.path.includes('nofake');
+    const checkPostFake = post.fake.includes(userID);
+    const checkPostNoFake = post.nofake.includes(userID);
 
-});
+    if(checkRoute && checkPostFake ) {
+        await Post.findById(postID).updateOne({ $pull: { fake: userID } });
+        next();
+    }
+     else if(!checkRoute && checkPostNoFake ) {
+        await Post.findById(postID).updateOne({ $pull: { nofake: userID } });
+        next();
+    }
+    if(checkPostFake || checkPostNoFake )  return res.json({
+    "response": "there is no user"
+     });
+   next();
+
+}
 
 
 
-
-
-
+router.post('/nofake/:postID/:userID', checkFakeNews,noFake);
+router.post('/fake/:postID/:userID',checkFakeNews,fake);
 module.exports = router;
 

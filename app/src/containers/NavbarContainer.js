@@ -58,6 +58,9 @@ const NavbarContainer = props => {
         socket.on('friendreq' + props.user.userInfo.data.result._id, () => {
             props.onNewFriendRequest();
         })
+        socket.on('chat message' + props.user.userInfo.data.result._id, () => {
+            props.onNewFriendRequest();
+        })
         // eslint-disable-next-line 
     }, [])
     const onProfile = () => {

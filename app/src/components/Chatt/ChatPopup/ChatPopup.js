@@ -1,8 +1,12 @@
 import React from 'react'
-
+import { useEffect } from 'react';
 import classes from './ChatPopup.module.css'
-
 const ChatPopup = props => {
+
+  
+
+
+
     const left = (msg) => {
         return (
             <div key={msg.date} className={classes.leftChat}>
@@ -10,17 +14,18 @@ const ChatPopup = props => {
             </div>
         );
     }
-
     const right = (msg) => {
         return (
             <div key={msg.date} className={classes.rightChat}>
+            <>
+                <i className="fas fa-trash"onClick={() => props.onRemoveMsg(msg._id,msg.from,msg.to,props.chats)}></i></>
                 {msg.message}
-            </div>
+            </div >
+         
         );
     }
-    console.log(props.imgUrl);
+
     return (
-        
         props.big === true ?
             <div>
                 <div style={{ right: props.right }} className={classes.display}>
@@ -39,7 +44,7 @@ const ChatPopup = props => {
                                 return (
                                     msg.from !== props.userID ?
                                         left(msg)
-                                        : right(msg)
+                                        : right(msg) 
                                 );
                             })
                         }
@@ -69,5 +74,4 @@ const ChatPopup = props => {
             </div>
     )
 }
-
 export default ChatPopup

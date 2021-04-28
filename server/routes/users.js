@@ -111,18 +111,18 @@ router.get('/search/:name', async (req, res) => {
 })
 
 // Get logged in user info
-router.get('/info', (req, res) => {
+router.get('/info', async (req, res) => {
     const token = req.header('Authorization');
     const user = jwt.decode(token);
-
     try {
-        User.findById(user._id).populate({
+     await  User.findById(user._id).populate({
             path: 'friends', select: ['name', 'imgUrl']
         }).populate({
             path: 'friendRequests', select: ['name', 'imgUrl']
         }).populate({
             path: 'notifications', select: ['name', 'imgUrl']
         }).exec((err, result) => {
+            console.log(err);
             res.json({
                 "result": result
             });
