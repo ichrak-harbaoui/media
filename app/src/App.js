@@ -7,12 +7,11 @@ import { Redirect } from 'react-router'
 import AuthView from './views/AuthView/AuthView'
 import HomeView from './views/HomeView/HomeView'
 import FakeNewsView from './views/FakeNewsView/FakeNewsView'
-
 import ProfileView from './views/ProfileView/ProfileView'
-import info from './views/info/info'
 import InfoView from './views/info/info'
 import DetailPostView from './views/DetailPostView/DetailPostView';
 import userListView from './views/userList/userListView';
+import ForgotPassword from './views/ForgotPassword/ForgotPassword';
 
 const App = props => {
 
@@ -27,6 +26,11 @@ const App = props => {
   
   return (
     <>
+    {/* {
+              <Route exact path="/forgotPassword">
+                <ForgotPassword />
+              </Route>
+          } */}
       {
         !props.auth.isAuthenticated ? <Redirect to={"/auth"}></Redirect> : null
       }
@@ -38,6 +42,8 @@ const App = props => {
                 <HomeView />
               </Route>
           }
+
+
              {
             props.user.loading ? null :
               <Route exact path="/fakeNews">
@@ -58,6 +64,10 @@ const App = props => {
             props.user.loading ? null :
               <Route exact path="/infoByID/:id" component={InfoView} />
           }
+            {
+            props.user.loading ? null :
+              <Route exact path="/updatePassword/:id" component={InfoView} />
+          }
              {
             props.user.loading ? null :
               <Route exact path="/all/:id" component={userListView} />
@@ -67,6 +77,7 @@ const App = props => {
           <Route exact path="/auth">
             <AuthView />
           </Route>
+          
           
         </Switch>
       }

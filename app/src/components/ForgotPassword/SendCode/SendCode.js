@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import classes from "./Login.module.css"
 
-const Login = props => {
+const SendCode = props => {
     const { register, handleSubmit, errors } = useForm();
     const { onSwitchState } = props;
     const mailInputBorder = errors.Email ? classes.errorInput : classes.input
@@ -12,6 +12,8 @@ const Login = props => {
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmit)}>
             <h2 className={classes.headerText}>Welcome to MediaSI</h2>
+        
+            <div className={classes.text} >{props.errorMessage}</div>
             <input
                 className={mailInputBorder}
                 type="text"
@@ -19,26 +21,16 @@ const Login = props => {
                 name="Email"
                 ref={register({ required: true, pattern: /^\S+@\S+$/i })}
             />
-            <input
-                className={passwordInputBorder}
-                type="password"
-                placeholder="Password"
-                name="Password"
-                ref={register({ required: true })}
-            />
-        
-            <div className={classes.text} >{props.errorMessage}</div>
             <button
                 className={classes.submitButton}
                 type="submit">
                 Log in
             </button>
-            <div className={classes.text} onClick={onSwitchState}>Don't you have an account?</div>
-            {/* <a href="/forgotPassword" onClick={props.cancel}>Forgot password</a> */}
+            <a href="/sendCode" onClick={props.cancel}>Forgot password</a>
 
         </form>
     )
 }
 
-export default Login
+export default SendCode
 

@@ -176,11 +176,7 @@ const PostItem = props => {
                     type="submit">
                     <i className="far fa-comment-alt"></i> Comment
                 </button>
-                <button
-                    className={classes.submitButton}
-                    type="submit">
-                    <i className="far fa-share-square"></i> Share
-                </button>
+        
             </div>
             <div className={classes.commentsContainer}>
 

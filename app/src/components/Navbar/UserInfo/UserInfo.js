@@ -15,6 +15,7 @@ const ProfileSection = props => {
     const size = useWindowSize();
     const userID = (props.userInfo.data.result._id)
 
+
     return (
         <>
             {
@@ -49,6 +50,38 @@ const ProfileSection = props => {
                             }
                         </Dropdown>
                     </div> : null
+            }
+
+
+{
+                showNotifications ?
+                    <div className={classes.dropdownPosition}>
+
+                        <Dropdown title="Message Requests">
+                            {
+                                props.userInfo.data ?
+                                    props.userInfo.data.result.notifications.length > 0 ?
+                                        props.userInfo.data.result.notifications.map(user => {
+                                            return (
+                                                <div onClick={() => { props.onStartNewChat(user.id,user.name,user.imgUrl) }} className={classes.cardContainer} style={{ paddingTop: props.paddingTop, paddingBottom: props.paddingBottom }}>
+
+                                                <Card
+                                                    key = {user._id}
+                                                    id={user._id}
+                                                    image={user.imgUrl}
+                                                    text={user.name}
+                                                >
+
+                                                   
+                                                </Card>
+</div>
+                                            )
+                                        }) :
+                                        <div className={classes.text}>No new message</div> : null
+                            }
+                        </Dropdown>
+                        </div>
+                     : null
             }
           
             {
@@ -110,5 +143,8 @@ const ProfileSection = props => {
         </>
     )
 }
+
+
+
 
 export default ProfileSection

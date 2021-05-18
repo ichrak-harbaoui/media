@@ -54,19 +54,20 @@ router.post('/login', async (req, res) => {
 
     // Create and assign a token
     const token = jwt.sign({ _id: user._id }, "dffd8kk5kjsga7gqytyewhrnmcq123"); // TOKEN SECRET
-
     res.send({ success: 'true', token: token });
 
 });
 
 
-router.get('/updatePassword',function(req,res){
-    User.findOneAndUpdate({_id:req.query.id},{$set:{password:bcrypt.hashSync(req.query.password, 10)}},{new:true},function(err,result){
-          if(err) console.log("err") ;
-       res.send(result);
-     })
-     });
+router.post('/updatePassword/:userID',function(req,res){
 
+  User.findById(req.params.userID).updateOne({$set:{password:bcrypt.hashSync(req.body.password, 10)}}).exec((err, result) => {
+    res.json({
+        "result": result
+    })  
+});
+
+});
 
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -87,7 +88,7 @@ var smtpTransport = nodemailer.createTransport({
   }
   console.log(makeid(5))
   router.post('/sendCode',function (req,res) {
-    User.findOneAndUpdate({email:req.query.email},{$set:{ resetPasswordToken:makeid(5)}},{new:true},
+    User.findOneAndUpdate({email:req.body.email},{$set:{ resetPasswordToken:makeid(5)}},{new:true},
     (function (err, result) {
           
       if(result) { 
@@ -96,13 +97,9 @@ var smtpTransport = nodemailer.createTransport({
               subject : "Changement de mot de passe",
               text : "Vous trouvez ci-joint votre code d'authentification "+ result.resetPasswordToken,
           }
-          console.log(mailOptions);
-          console.log(result.resetPasswordToken);
   
           smtpTransport.sendMail(mailOptions, function(error, response){
            if(error){
-                  console.log("ok");
-             // res.end("error");
            }
       });
       res.send(result);

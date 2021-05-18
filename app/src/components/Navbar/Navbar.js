@@ -49,6 +49,7 @@ const Navbar = props => {
                             notificationsList={props.notificationsList}
                             onRemoveFriendRequest={props.onRemoveFriendRequest}
                             onAcceptFriendRequest={props.onAcceptFriendRequest}
+                            onStartNewChat={props.onStartNewChat}
                         />
                     </div>
                 </nav>

@@ -129,6 +129,18 @@ export const authCheckState = () => {
     };
 };
 
+export const updatePassword = (userID,password) => {
+    const { Password } = password;
+
+    return dispatch => {
+        axios.post('http://localhost:5001/api/auth/updatePassword/' + userID , {
+            password : Password
+        }).then(res => {
+
+            dispatch(getInfo())
+        })
+    }
+}
 
 export const logout = () => {
     return {

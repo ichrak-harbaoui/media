@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Navbar from '../components/Navbar/Navbar'
 import useSocket from 'use-socket.io-client';
 import ChatContainer from './ChatContainer'
+import * as chatActions from '../store/actions/chatActions'
 
 const ENDPOINT = "http://localhost:5001";
 const NavbarContainer = props => {
@@ -20,6 +21,9 @@ const NavbarContainer = props => {
         setShowFriends(false);
         setShowNotifications(false);
         setSearchInput("");
+    }
+    const startNewChatHandler = (id, name, imgUrl) => {
+        props.onNewChat(props.user.userInfo.data.result._id, id, name, imgUrl, props.chat.activeChats)
     }
 
     const toggleFriends = () => {
@@ -90,6 +94,7 @@ const NavbarContainer = props => {
                 setOpenChatOnMobile={setChatOpenOnMobile}
                 profileUser={props.user.profileUser}
                 getProfileUserInfo={props.getProfileUserInfo}
+                onStartNewChat={startNewChatHandler}
 
             >
             </Navbar>
@@ -102,7 +107,9 @@ const NavbarContainer = props => {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    user: state.user
+    user: state.user,
+    chat: state.chat
+
 })
 
 const mapDispatchToProps = dispatch => {
@@ -114,6 +121,8 @@ const mapDispatchToProps = dispatch => {
         onRemoveFriendRequest: userID => dispatch(userActions.removeFriendRequest(userID)),
         onNewFriendRequest: () => dispatch(userActions.getInfo()),
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
+        onNewChat: (userID, id, name, imgUrl, activeChats) => dispatch(chatActions.startNewChat(userID, id, name, imgUrl, activeChats)),
+
 
     }
 };

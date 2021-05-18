@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import * as postActions from '../store/actions/postActions'
 import * as userActions from '../store/actions/userActions'
 import Feed from '../components/Feed/Feed'
-import useSocket from 'use-socket.io-client';
-import Comment from '../components/Feed/PostItem/Comment/Comment';
 const ENDPOINT = "http://localhost:5001";
 
 const FeedContainer = props => {

@@ -16,6 +16,8 @@ const UserList = props => {
                     onRemoveFriend={props.onRemoveFriend}
                     onAcceptFriendRequest={props.onAcceptFriendRequest}
                     onRemoveFriendRequest={props.onRemoveFriendRequest}
+                    onStartNewChat={props.onStartNewChat}
+
                     />
 
                     </div>

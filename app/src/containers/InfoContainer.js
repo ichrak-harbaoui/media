@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import * as authActions from '../store/actions/authActions'
 import * as userActions from '../store/actions/userActions'
-
-import Authh from '../components/Authh/Authh'
 import Info from '../components/Info/Info'
 
 const InfoContainer = props => {
-
+    const [switchState, setSwitchState] = useState(true);
+    const handleSwitch = () => {
+        setSwitchState(curr => !curr);
+    }
     const [file, setFile ] = useState(props.user.userInfo.data.result.file);
     const [name, setName] = useState(props.user.userInfo.data.result.name);
     const [email, setEmail] = useState(props.user.userInfo.data.result.email);
@@ -15,10 +16,16 @@ const InfoContainer = props => {
     const [phone, setPhone] = useState(props.user.userInfo.data.result.phone);
     const [birthday, setBirthday] = useState(props.user.userInfo.data.result.dateOfBirth);
     const [description, setDescription] = useState(props.user.userInfo.data.result.description);
-
     const onSubmit = (data) => {
 
         props.updateProfil(data,file,phone,description,userID) 
+
+    }
+
+    const onSubmitpass = (password) => {
+
+        props.updatePassword(userID,password) 
+        console.log(password);
 
     }
     useEffect(() => {
@@ -28,8 +35,10 @@ const InfoContainer = props => {
     return (
         <>
             <Info
+                onSwitchState={handleSwitch}
                 isAuthenticated={props.auth.isAuthenticated}
                 onSubmit={onSubmit}
+                onSubmitpass={onSubmitpass}
                 errorMessage={props.auth.error}
                 setFile={setFile}
                 setName={setName}
@@ -42,9 +51,11 @@ const InfoContainer = props => {
                 setPhone={setPhone}
                 phone={phone}
                 setBirthday={setBirthday}
-                birthDay={birthday}
+                birthday={birthday}
                 setDescription={setDescription}
                 description={description}
+                switchState={switchState}
+                updatePassword={props.updatePassword}
                 >
             </Info>
         </>
@@ -61,7 +72,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getProfileUserInfo: (id) => dispatch(userActions.getUserInfoById(id)),
         updateProfil: (data,file,phone,description,userID) => dispatch(userActions.updateProfil(data,file,phone,description,userID)),
-        allUsers:()=>dispatch(userActions.allUsers())
+        allUsers:()=>dispatch(userActions.allUsers()),
+        updatePassword: (userID, password) => dispatch(authActions.updatePassword(userID, password)),
+
     }
 };
 

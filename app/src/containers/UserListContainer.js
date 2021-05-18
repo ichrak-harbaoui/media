@@ -16,6 +16,7 @@ const UserListContainer = props => {
        props.allUsers();
     }, []);
 
+  
     return (
         <>
             <UserList
@@ -29,6 +30,7 @@ const UserListContainer = props => {
               onRemoveFriend={props.onRemoveFriend}
               onAcceptFriendRequest={props.onAcceptFriendRequest}
               onRemoveFriendRequest={props.onRemoveFriendRequest}
+
                 >
             </UserList>
         </>
@@ -50,6 +52,7 @@ const mapDispatchToProps = dispatch => {
         onRemoveFriend: (userID) => dispatch(userActions.removeFriend(userID)),
         onAcceptFriendRequest: userID => dispatch(userActions.acceptFriendRequest(userID)),
         onRemoveFriendRequest: userID => dispatch(userActions.removeFriendRequest(userID)),
+
 
     }
 };

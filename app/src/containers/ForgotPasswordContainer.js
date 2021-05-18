@@ -1,10 +1,10 @@
+import ForgotPassword from 'components/ForgotPassword/ForgotPassword';
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import * as authActions from '../store/actions/authActions'
 
-import Authh from '../components/Authh/Authh'
 
-const AuthContainer = props => {
+const ForgotPasswordContainer = props => {
 
     const [switchState, setSwitchState] = useState(true);
     const [file, setFile] = useState('');
@@ -24,7 +24,7 @@ const AuthContainer = props => {
 
     return (
         <>
-            <Authh
+            <ForgotPassword
                 isAuthenticated={props.auth.isAuthenticated}
                 onSwitchState={handleSwitch}
                 onSubmit={onSubmit}
@@ -35,7 +35,7 @@ const AuthContainer = props => {
                 setPhone={setPhone}
                 phone={phone}
                 >
-            </Authh>
+            </ForgotPassword>
         </>
     )
 }
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordContainer)
