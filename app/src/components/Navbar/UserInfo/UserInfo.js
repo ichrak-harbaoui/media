@@ -5,6 +5,7 @@ import Dropdown from '../../UI/Dropdown/Dropdown'
 import Card from '../../UI/Card/Card'
 import IconButton from '../../UI/Buttons/IconButton/IconButton'
 import {useWindowSize} from '@react-hook/window-size'
+import { fetchMessageHistory } from 'store/actions/chatActions'
 
 const ProfileSection = props => {
 
@@ -63,7 +64,10 @@ const ProfileSection = props => {
                                     props.userInfo.data.result.notifications.length > 0 ?
                                         props.userInfo.data.result.notifications.map(user => {
                                             return (
-                                                <div onClick={() => { props.onStartNewChat(user.id,user.name,user.imgUrl) }} className={classes.cardContainer} style={{ paddingTop: props.paddingTop, paddingBottom: props.paddingBottom }}>
+                                                <div onClick={() => { 
+                                                    props.onStartNewChat(user.id,user.name,user.imgUrl);
+
+                                                 }} className={classes.cardContainer} style={{ paddingTop: props.paddingTop, paddingBottom: props.paddingBottom }}>
 
                                                 <Card
                                                     key = {user._id}

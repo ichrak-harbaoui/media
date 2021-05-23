@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Switch, Route } from "react-router-dom"
 import * as authActions from './store/actions/authActions'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 
 import AuthView from './views/AuthView/AuthView'
 import HomeView from './views/HomeView/HomeView'
@@ -12,76 +11,48 @@ import InfoView from './views/info/info'
 import DetailPostView from './views/DetailPostView/DetailPostView';
 import userListView from './views/userList/userListView';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword';
+import LoggedOutRoutes  from 'containers/AppRouter/LoggedOutRoutes';
+import LoggedInRoutes from 'containers/AppRouter/LoggedInRoutes';
 
-const App = props => {
+const App = ({auth,user,onTryAutoSignup}) => {
 
   const [constructorHasRun, setConstructorHasRun] = useState(false);
 
   const constructor = () => {
     if (constructorHasRun) return;
-    props.onTryAutoSignup();
+    onTryAutoSignup();
     setConstructorHasRun(true);
   };
   constructor();
-  
   return (
-    <>
-    {/* {
-              <Route exact path="/forgotPassword">
-                <ForgotPassword />
-              </Route>
-          } */}
-      {
-        !props.auth.isAuthenticated ? <Redirect to={"/auth"}></Redirect> : null
-      }
-      {
+
         <Switch>
-          {
-            props.user.loading ? null :
-              <Route exact path="/">
-                <HomeView />
-              </Route>
-          }
-
-
-             {
-            props.user.loading ? null :
-              <Route exact path="/fakeNews">
-                <FakeNewsView />
-              </Route>
-          }
-          {
-            props.user.loading ? null :
-              <Route exact path="/:id" component={ProfileView} />
-
-          }
-          {
-            props.user.loading ? null :
-              <Route exact path="/details/:id" component={DetailPostView} />
-
-          }
-          {
-            props.user.loading ? null :
-              <Route exact path="/infoByID/:id" component={InfoView} />
-          }
-            {
-            props.user.loading ? null :
-              <Route exact path="/updatePassword/:id" component={InfoView} />
-          }
-             {
-            props.user.loading ? null :
-              <Route exact path="/all/:id" component={userListView} />
-          }
-      
           
-          <Route exact path="/auth">
-            <AuthView />
-          </Route>
+             <LoggedOutRoutes exact path="/forgotPassword" component={ForgotPassword} />
+
+              <LoggedOutRoutes exact path="/auth" component={AuthView}/>          
+          
+              <LoggedInRoutes user={user} auth={auth} exact path="/" component={HomeView} />        
+             
+              <LoggedInRoutes user={user}  auth={auth} exact path="/fakeNews" component={FakeNewsView} />         
+            
+              <LoggedInRoutes user={user}  auth={auth} exact path="/:id" component={ProfileView} />
+
+         
+            
+              <LoggedInRoutes user={user}  auth={auth} exact path="/details/:id" component={DetailPostView} />
+            
+              <LoggedInRoutes  user={user} auth={auth} exact path="/infoByID/:id" component={InfoView} />
+       
+            
+              <LoggedInRoutes user={user}  auth={auth} exact path="/updatePassword/:id" component={InfoView} />
+      
+            
+              <LoggedInRoutes  user={user} auth={auth} exact path="/all/:id" component={userListView} />
           
           
         </Switch>
-      }
-    </>
+
   );
 }
 

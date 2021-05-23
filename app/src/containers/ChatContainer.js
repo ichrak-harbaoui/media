@@ -26,7 +26,7 @@ const ChatContainer = props => {
         })
 
         // eslint-disable-next-line 
-    }, [props.user.userInfo.data.result._id, socket]);
+    }, [props.onNewChat,props.user.userInfo.data.result._id, socket]);
 
 
 

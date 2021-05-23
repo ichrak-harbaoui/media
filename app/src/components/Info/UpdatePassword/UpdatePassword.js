@@ -1,15 +1,17 @@
 import { useForm } from 'react-hook-form';
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import classes from "./Register.module.css"
 
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
 const UpdatePassword = props => {
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit,watch, errors } = useForm();
     const { onSwitchState } = props;
     const nameInputBorder = errors.Password ? classes.errorInput : classes.input
     const mailInputBorder = errors.Password ? classes.errorInput : classes.input
-
+    const password = useRef({});
+    password.current = watch("Password", "");
+console.log(errors.Password);
     return (
         <form className={classes.form} onSubmit={handleSubmit(props.onSubmitpass)}>
             <h1 className={classes.headerText}>Join Now</h1>
@@ -39,9 +41,10 @@ const UpdatePassword = props => {
              className={nameInputBorder}
              type="password"
              placeholder=" confirm password"
-             
-             ref={register({ required: true, minLength: 4, maxLength: 30 })}             
-            />
+             name="password_repeat"
+             ref={register({
+                validate: value =>  value === password.current || "The passwords do not match"
+           })}            />
             <div className={classes.text} >{props.errorMessage}</div>
             <button
                 className={classes.submitButton}
@@ -49,6 +52,8 @@ const UpdatePassword = props => {
                >
                 Update     
             </button>
+            {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+
             <div className={classes.text} onClick={onSwitchState}>cancel</div>
             <div ><p> </p></div>
           

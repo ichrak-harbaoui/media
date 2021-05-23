@@ -34,7 +34,7 @@ const Login = props => {
                 Log in
             </button>
             <div className={classes.text} onClick={onSwitchState}>Don't you have an account?</div>
-            {/* <a href="/forgotPassword" onClick={props.cancel}>Forgot password</a> */}
+          <a href="/forgotPassword" onClick={props.cancel}>Forgot password</a> 
 
         </form>
     )
